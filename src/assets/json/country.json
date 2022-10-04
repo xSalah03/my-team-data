@@ -1,0 +1,633 @@
+{
+  "success": 1,
+  "value": [
+      {
+          "country": "Afghanistan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/afghanistan/Afghanistan1553.png"
+      },
+      {
+          "country": "Albania",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/albania/FK Kukesi577.png"
+      },
+      {
+          "country": "Algeria",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/algeria/CR Belouizdad904.png"
+      },
+      {
+          "country": "Andorra",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/andorra/FC Santa Coloma591.png"
+      },
+      {
+          "country": "Angola",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/angola/Angola1529.png"
+      },
+      {
+          "country": "Argentina",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/argentina/Argentina26.png"
+      },
+      {
+          "country": "Armenia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/armenia/Alashkert582.png"
+      },
+      {
+          "country": "Austria",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/austria/Red Bull Salzburg571.png"
+      },
+      {
+          "country": "Bahamas",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/bahamas/Bahamas5157.png"
+      },
+      {
+          "country": "Bahrain",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/bahrain/Bahrain1547.png"
+      },
+      {
+          "country": "Bangladesh",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/bangladesh/Bangladesh1560.png"
+      },
+      {
+          "country": "Barbados",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/barbados/Barbados5527.png"
+      },
+      {
+          "country": "Belarus",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/belarus/FC Slutsk379.png"
+      },
+      {
+          "country": "Belgium",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/belgium/Belgium1.png"
+      },
+      {
+          "country": "Belize",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/belize/San Pedro5469.png"
+      },
+      {
+          "country": "Benin",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/benin/Benin1516.png"
+      },
+      {
+          "country": "Bhutan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/bhutan/Bhutan1540.png"
+      },
+      {
+          "country": "Bolivia",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/bolivia/Bolivia2381.png"
+      },
+      {
+          "country": "Bosnia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/bosnia/Zrinjski588.png"
+      },
+      {
+          "country": "Botswana",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/botswana/Botswana1520.png"
+      },
+      {
+          "country": "Brazil",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/brazil/Brazil6.png"
+      },
+      {
+          "country": "Bulgaria",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/bulgaria/Ludogorets566.png"
+      },
+      {
+          "country": "Burkina-Faso",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/burkina-faso/Burkina Faso1502.png"
+      },
+      {
+          "country": "Burundi",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/burundi/Burundi1528.png"
+      },
+      {
+          "country": "Cambodia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/cambodia/Cambodia1543.png"
+      },
+      {
+          "country": "Cameroon",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/cameroon/Cameroon1530.png"
+      },
+      {
+          "country": "Canada",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/canada/Toronto FC1601.png"
+      },
+      {
+          "country": "Chile",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/chile/Chile W1977.png"
+      },
+      {
+          "country": "China",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/china/Beijing Guoan830.png"
+      },
+      {
+          "country": "Colombia",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/colombia/Colombia8.png"
+      },
+      {
+          "country": "Comoros",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/comoros/Comoros1524.png"
+      },
+      {
+          "country": "Congo",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/congo/Congo1517.png"
+      },
+      {
+          "country": "Costa-Rica",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/costa-rica/Costa Rica29.png"
+      },
+      {
+          "country": "Croatia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/croatia/Croatia3.png"
+      },
+      {
+          "country": "Cuba",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/cuba/Cuba2388.png"
+      },
+      {
+          "country": "Cyprus",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/cyprus/Apollon Limassol602.png"
+      },
+      {
+          "country": "Czech-Republic",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/czech-republic/Slavia Praha560.png"
+      },
+      {
+          "country": "Denmark",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/denmark/Denmark21.png"
+      },
+      {
+          "country": "Djibouti",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/djibouti/Djibouti1535.png"
+      },
+      {
+          "country": "Dominican-Republic",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/dominican-republic/Dominican Republic5532.png"
+      },
+      {
+          "country": "Ecuador",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/ecuador/Emelec1148.png"
+      },
+      {
+          "country": "Egypt",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/egypt/Egypt32.png"
+      },
+      {
+          "country": "El-Salvador",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/el-salvador/Alianza4299.png"
+      },
+      {
+          "country": "Eritrea",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/eritrea/Eritrea1498.png"
+      },
+      {
+          "country": "Estonia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/estonia/Kalju Nomme662.png"
+      },
+      {
+          "country": "Eswatini",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/eswatini/Eswatini2995.png"
+      },
+      {
+          "country": "Ethiopia",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/ethiopia/Ethiopia1506.png"
+      },
+      {
+          "country": "Finland",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/finland/IFK Mariehamn587.png"
+      },
+      {
+          "country": "France",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/france/France2.png"
+      },
+      {
+          "country": "Gabon",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/gabon/Gabon1503.png"
+      },
+      {
+          "country": "Gambia",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/gambia/Gambia1492.png"
+      },
+      {
+          "country": "Georgia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/georgia/Samtredia581.png"
+      },
+      {
+          "country": "Germany",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/germany/Germany25.png"
+      },
+      {
+          "country": "Ghana",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/ghana/Ghana1504.png"
+      },
+      {
+          "country": "Greece",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/greece/Olympiakos Piraeus553.png"
+      },
+      {
+          "country": "Grenada",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/grenada/Grenada5533.png"
+      },
+      {
+          "country": "Guatemala",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/guatemala/Achuapa3636.png"
+      },
+      {
+          "country": "Guinea",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/guinea/Guinea1509.png"
+      },
+      {
+          "country": "Guinea-Bissau",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/guinea-bissau/Guinea-Bissau1513.png"
+      },
+      {
+          "country": "Guyana",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/guyana/Guyana5162.png"
+      },
+      {
+          "country": "Haiti",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/haiti/Haiti2386.png"
+      },
+      {
+          "country": "Honduras",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/honduras/CD Marathon1050.png"
+      },
+      {
+          "country": "Hungary",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/hungary/Budapest Honved576.png"
+      },
+      {
+          "country": "Iceland",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/iceland/Iceland18.png"
+      },
+      {
+          "country": "India",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/india/India1537.png"
+      },
+      {
+          "country": "Indonesia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/indonesia/Indonesia1571.png"
+      },
+      {
+          "country": "Iran",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/iran/Iran22.png"
+      },
+      {
+          "country": "Iraq",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/iraq/Iraq1567.png"
+      },
+      {
+          "country": "Ireland",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/ireland/Dundalk584.png"
+      },
+      {
+          "country": "Israel",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/israel/Hapoel Beer Sheva563.png"
+      },
+      {
+          "country": "Italy",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/italy/Lazio487.png"
+      },
+      {
+          "country": "Ivory-Coast",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/ivory-coast/AFAD4511.png"
+      },
+      {
+          "country": "Jamaica",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/jamaica/Jamaica W1785.png"
+      },
+      {
+          "country": "Japan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/japan/Japan12.png"
+      },
+      {
+          "country": "Jordan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/jordan/Jordan1548.png"
+      },
+      {
+          "country": "Kazakhstan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/kazakhstan/FC Astana562.png"
+      },
+      {
+          "country": "Kenya",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/kenya/Kenya1511.png"
+      },
+      {
+          "country": "Kuwait",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/kuwait/Kuwait1570.png"
+      },
+      {
+          "country": "Kyrgyzstan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/kyrgyzstan/Kyrgyzstan1554.png"
+      },
+      {
+          "country": "Laos",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/laos/Laos1558.png"
+      },
+      {
+          "country": "Latvia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/latvia/Spartaks Jurmala589.png"
+      },
+      {
+          "country": "Lebanon",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/lebanon/Lebanon1551.png"
+      },
+      {
+          "country": "Lesotho",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/lesotho/Lesotho1518.png"
+      },
+      {
+          "country": "Liberia",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/liberia/Liberia1525.png"
+      },
+      {
+          "country": "Libya",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/libya/Libya1526.png"
+      },
+      {
+          "country": "Liechtenstein",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/liechtenstein/FC Vaduz660.png"
+      },
+      {
+          "country": "Lithuania",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/lithuania/FK Zalgiris Vilnius586.png"
+      },
+      {
+          "country": "Luxembourg",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/luxembourg/F91 Dudelange578.png"
+      },
+      {
+          "country": "Macedonia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/macedonia/Vardar Skopje574.png"
+      },
+      {
+          "country": "Madagascar",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/madagascar/Madagascar1490.png"
+      },
+      {
+          "country": "Malawi",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/malawi/Malawi1495.png"
+      },
+      {
+          "country": "Malaysia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/malaysia/Malaysia1538.png"
+      },
+      {
+          "country": "Maldives",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/maldives/Maldives1549.png"
+      },
+      {
+          "country": "Mali",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/mali/Mali1500.png"
+      },
+      {
+          "country": "Malta",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/malta/Valletta FC659.png"
+      },
+      {
+          "country": "Mauritania",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/mauritania/Mauritania1491.png"
+      },
+      {
+          "country": "Mauritius",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/mauritius/Mauritius1497.png"
+      },
+      {
+          "country": "Mexico",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/mexico/Mexico16.png"
+      },
+      {
+          "country": "Moldova",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/moldova/Sheriff Tiraspol568.png"
+      },
+      {
+          "country": "Mongolia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/mongolia/Mongolia5534.png"
+      },
+      {
+          "country": "Montenegro",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/montenegro/Buducnost Podgorica579.png"
+      },
+      {
+          "country": "Morocco",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/morocco/Morocco31.png"
+      },
+      {
+          "country": "Mozambique",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/mozambique/Mozambique1512.png"
+      },
+      {
+          "country": "Myanmar",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/myanmar/Myanmar1556.png"
+      },
+      {
+          "country": "Namibia",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/namibia/Namibia1493.png"
+      },
+      {
+          "country": "Nepal",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/nepal/Nepal1545.png"
+      },
+      {
+          "country": "Netherlands",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/netherlands/PEC Zwolle193.png"
+      },
+      {
+          "country": "Nicaragua",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/nicaragua/Chinandega4639.png"
+      },
+      {
+          "country": "Niger",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/niger/Niger1505.png"
+      },
+      {
+          "country": "Nigeria",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/nigeria/Nigeria19.png"
+      },
+      {
+          "country": "North-Korea",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/north-korea/North Korea1561.png"
+      },
+      {
+          "country": "Norway",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/norway/Brann319.png"
+      },
+      {
+          "country": "Oman",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/oman/Oman1552.png"
+      },
+      {
+          "country": "Pakistan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/pakistan/Pakistan5535.png"
+      },
+      {
+          "country": "Palestine",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/palestine/Palestine1562.png"
+      },
+      {
+          "country": "Panama",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/panama/Panama11.png"
+      },
+      {
+          "country": "Paraguay",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/paraguay/Club Guarani1174.png"
+      },
+      {
+          "country": "Peru",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/peru/Peru30.png"
+      },
+      {
+          "country": "Philippines",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/philippines/Philippines1555.png"
+      },
+      {
+          "country": "Poland",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/poland/Poland24.png"
+      },
+      {
+          "country": "Portugal",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/portugal/Portugal27.png"
+      },
+      {
+          "country": "Qatar",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/qatar/Qatar1569.png"
+      },
+      {
+          "country": "Romania",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/romania/FCSB559.png"
+      },
+      {
+          "country": "Russia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/russia/Russia4.png"
+      },
+      {
+          "country": "Rwanda",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/rwanda/Rwanda1514.png"
+      },
+      {
+          "country": "San-Marino",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/san-marino/Folgore672.png"
+      },
+      {
+          "country": "Saudi-Arabia",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/saudi-arabia/Saudi Arabia23.png"
+      },
+      {
+          "country": "Serbia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/serbia/Serbia14.png"
+      },
+      {
+          "country": "Seychelles",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/seychelles/Seychelles1515.png"
+      },
+      {
+          "country": "Singapore",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/singapore/Singapore1546.png"
+      },
+      {
+          "country": "Slovakia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/slovakia/AS Trencin655.png"
+      },
+      {
+          "country": "Slovenia",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/slovenia/Maribor552.png"
+      },
+      {
+          "country": "South-Africa",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/south-africa/South Africa1531.png"
+      },
+      {
+          "country": "South-Korea",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/south-korea/South Korea17.png"
+      },
+      {
+          "country": "South-Sudan",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/south-sudan/Atlabara6412.png"
+      },
+      {
+          "country": "Spain",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/spain/Spain9.png"
+      },
+      {
+          "country": "Sudan",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/sudan/South Sudan1496.png"
+      },
+      {
+          "country": "Sweden",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/sweden/Sweden5.png"
+      },
+      {
+          "country": "Switzerland",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/switzerland/Switzerland15.png"
+      },
+      {
+          "country": "Syria",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/syria/Syria1565.png"
+      },
+      {
+          "country": "Tajikistan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/tajikistan/Tajikistan1536.png"
+      },
+      {
+          "country": "Tanzania",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/tanzania/Tanzania1489.png"
+      },
+      {
+          "country": "Thailand",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/thailand/Thailand1564.png"
+      },
+      {
+          "country": "Togo",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/togo/Togo1534.png"
+      },
+      {
+          "country": "Tunisia",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/tunisia/Tunisia28.png"
+      },
+      {
+          "country": "Turkey",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/turkey/Besiktas549.png"
+      },
+      {
+          "country": "Turkmenistan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/turkmenistan/Turkmenistan1539.png"
+      },
+      {
+          "country": "USA",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/usa/Seattle Sounders1595.png"
+      },
+      {
+          "country": "Uganda",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/uganda/Uganda1519.png"
+      },
+      {
+          "country": "Ukraine",
+          "logo": "http://apidata.myteam.ma/uploads/Europe/ukraine/Shakhtar Donetsk550.png"
+      },
+      {
+          "country": "United-Arab-Emirates",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/united-arab-emirates/United Arab Emirates1563.png"
+      },
+      {
+          "country": "Uruguay",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/uruguay/Uruguay7.png"
+      },
+      {
+          "country": "Uzbekistan",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/uzbekistan/Uzbekistan1568.png"
+      },
+      {
+          "country": "Venezuela",
+          "logo": "http://apidata.myteam.ma/uploads/Amerique/venezuela/Venezuela2379.png"
+      },
+      {
+          "country": "Vietnam",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/vietnam/Vietnam1542.png"
+      },
+      {
+          "country": "Yemen",
+          "logo": "http://apidata.myteam.ma/uploads/Asia/yemen/Yemen1550.png"
+      },
+      {
+          "country": "Zambia",
+          "logo": "http://apidata.myteam.ma/uploads/afrique/zambia/Zambia1507.png"
+      }
+  ]
+}
