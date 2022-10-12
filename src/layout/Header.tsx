@@ -1,9 +1,19 @@
-import React from 'react'
+import { Layout } from "antd";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
-export default function Header({}: Props) {
+const Header = (props: Props) => {
+  const { Header } = Layout;
+
   return (
-    <div>Header</div>
-  )
-}
+    <Layout>
+      <Header
+        className="site-layout-sub-header-background"
+        style={{ padding: 0 }}
+      />
+    </Layout>
+  );
+};
+
+export default Header;

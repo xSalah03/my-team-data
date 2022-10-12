@@ -5,7 +5,7 @@
           "id": 21,
           "nom": "ABDELAHAD",
           "prenom": "IMANE",
-          "date_naissance": "1994-07-21T00:00:00.000Z",
+          "date_naissance": "1994-07-21",
           "poste": "G",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -16,14 +16,14 @@
           "instat_fullname": "null",
           "national_team": "1852",
           "category": null,
-          "poids": "80",
-          "taille": "180"
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 23,
           "nom": "BADRI",
           "prenom": "NAJAT",
-          "date_naissance": "1988-05-19T00:00:00.000Z",
+          "date_naissance": "1988-05-19",
           "poste": "G",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -34,14 +34,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 24,
           "nom": "ERRMICHI",
           "prenom": "KHADIJA",
-          "date_naissance": "1989-09-15T00:00:00.000Z",
+          "date_naissance": "1989-09-15",
           "poste": "G",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -52,14 +52,14 @@
           "instat_fullname": "null",
           "national_team": "1852",
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 25,
           "nom": "HASNAOUI",
           "prenom": "HIND",
-          "date_naissance": "1996-09-12T00:00:00.000Z",
+          "date_naissance": "1996-09-12",
           "poste": "G",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -70,14 +70,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 26,
           "nom": "ZOUHAIR",
           "prenom": "ASSIA",
-          "date_naissance": "1991-04-29T00:00:00.000Z",
+          "date_naissance": "1991-04-29",
           "poste": "G",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -88,14 +88,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 27,
           "nom": "AIT ELHAJ",
           "prenom": "HANANE",
-          "date_naissance": "1994-11-01T00:00:00.000Z",
+          "date_naissance": "1994-11-01",
           "poste": "DC",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -106,14 +106,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 28,
           "nom": "ALLICE",
           "prenom": "EVA",
-          "date_naissance": "2002-01-02T00:00:00.000Z",
+          "date_naissance": "2002-01-02",
           "poste": "D",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -124,14 +124,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 29,
           "nom": "CHHIRI",
           "prenom": "GHIZLANE",
-          "date_naissance": "1994-11-08T00:00:00.000Z",
+          "date_naissance": "1994-11-08",
           "poste": "D",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -142,14 +142,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 31,
           "nom": "EL CHAD",
           "prenom": "NESRYNE",
-          "date_naissance": "2003-03-12T00:00:00.000Z",
+          "date_naissance": "2003-03-12",
           "poste": "D",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -160,14 +160,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 33,
           "nom": "KATIE MRABET",
           "prenom": "YASMIN",
-          "date_naissance": "1999-08-07T00:00:00.000Z",
+          "date_naissance": "1999-08-07",
           "poste": "D",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -178,14 +178,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 34,
           "nom": "RABBAH",
           "prenom": "AZIZA",
-          "date_naissance": "1986-07-04T00:00:00.000Z",
+          "date_naissance": "1986-07-04",
           "poste": "DC",
           "lateralite": "gauche",
           "nationalite": "Morocco",
@@ -196,14 +196,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 35,
           "nom": "REDOUANI",
           "prenom": "ZINEB",
-          "date_naissance": "2000-06-11T00:00:00.000Z",
+          "date_naissance": "2000-06-11",
           "poste": "D",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -214,14 +214,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 36,
           "nom": "SEGHIR",
           "prenom": "SABAH",
-          "date_naissance": "2000-09-26T00:00:00.000Z",
+          "date_naissance": "2000-09-26",
           "poste": "D",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -232,14 +232,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 37,
           "nom": "AMANI",
           "prenom": "SALMA",
-          "date_naissance": "1989-11-28T00:00:00.000Z",
+          "date_naissance": "1989-11-28",
           "poste": "M",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -250,14 +250,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 38,
           "nom": "BOUKHAMI",
           "prenom": "SIHAM",
-          "date_naissance": "1992-01-31T00:00:00.000Z",
+          "date_naissance": "1992-01-31",
           "poste": "M",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -268,14 +268,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 39,
           "nom": "CHAYMAA",
           "prenom": "MOURTAJI",
-          "date_naissance": "1995-12-07T00:00:00.000Z",
+          "date_naissance": "1995-12-07",
           "poste": "M",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -286,14 +286,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 40,
           "nom": "CHEBBAK",
           "prenom": "CHEBBAK",
-          "date_naissance": "1990-08-21T00:00:00.000Z",
+          "date_naissance": "1990-08-21",
           "poste": "MG",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -304,14 +304,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 41,
           "nom": "DAHMOS",
           "prenom": "FATIMA ZAHRA",
-          "date_naissance": "1992-08-04T00:00:00.000Z",
+          "date_naissance": "1992-08-04",
           "poste": "M",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -322,14 +322,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 42,
           "nom": "NAKKACH ",
           "prenom": "ELODIE NAHLA",
-          "date_naissance": "1995-01-19T00:00:00.000Z",
+          "date_naissance": "1995-01-19",
           "poste": "M",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -340,14 +340,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 43,
           "nom": "SAMYA",
           "prenom": "HASSANI",
-          "date_naissance": "2000-01-02T00:00:00.000Z",
+          "date_naissance": "2000-01-02",
           "poste": "M",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -358,14 +358,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 44,
           "nom": "TAGNAOUT",
           "prenom": "FATIMA",
-          "date_naissance": "1999-01-19T00:00:00.000Z",
+          "date_naissance": "1999-01-19",
           "poste": "MO",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -376,14 +376,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 46,
           "nom": "AYANE",
           "prenom": "ROSELLA",
-          "date_naissance": "1996-03-16T00:00:00.000Z",
+          "date_naissance": "1996-03-16",
           "poste": "A",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -394,14 +394,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 47,
           "nom": "BOUFTINI",
           "prenom": "SOFIA",
-          "date_naissance": "2002-01-25T00:00:00.000Z",
+          "date_naissance": "2002-01-25",
           "poste": "A",
           "lateralite": "droit",
           "nationalite": "Morocco",
@@ -412,14 +412,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 48,
           "nom": "JRAIDI",
           "prenom": "IBTISSAM",
-          "date_naissance": "1992-12-08T00:00:00.000Z",
+          "date_naissance": "1992-12-08",
           "poste": "A",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -430,14 +430,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 49,
           "nom": "MSSOUDY",
           "prenom": "SANAA",
-          "date_naissance": "1999-12-29T00:00:00.000Z",
+          "date_naissance": "1999-12-29",
           "poste": "A",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -448,14 +448,14 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       },
       {
           "id": 50,
           "nom": "SAOUD",
           "prenom": "IMANE",
-          "date_naissance": "2022-06-05T00:00:00.000Z",
+          "date_naissance": "2022-06-05",
           "poste": "A",
           "lateralite": "ambidextre",
           "nationalite": "Morocco",
@@ -466,8 +466,8 @@
           "instat_fullname": null,
           "national_team": null,
           "category": null,
-          "poids": null,
-          "taille": null
+          "poids": 50,
+          "taille": 150
       }
   ]
 }
