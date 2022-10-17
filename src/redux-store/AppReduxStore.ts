@@ -1,10 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit'
-import allPlayerSlice from './reducer/allPlayerSlice';
+import ClubSlice from './reducer/ClubSlice';
+import CountrySlice from './reducer/CountrySlice';
+import allPlayerSlice from './reducer/PlayerSlice';
 
 
 const AppReduxStore = configureStore({ reducer: {
-    allPlayers: allPlayerSlice
-   
+    allPlayers: allPlayerSlice,
+    allClubs: ClubSlice,
+    allCountries: CountrySlice
 } });
 
 export type RootState = ReturnType<typeof AppReduxStore.getState>

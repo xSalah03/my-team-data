@@ -1,16 +1,19 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import { AllPlayerStateInterface, Player } from "../../interface/redux-state/AllPlayerStateInterface";
-import dataPlayers  from "../../assets/json/players.json";
+import {
+  Player,
+  PlayerStateInterface,
+} from "../../interface/redux-state/PlayerStateInterface";
+import dataPlayers from "../../assets/json/players.json";
 
-const initialState: AllPlayerStateInterface = {
-  players:[] ,
+const initialState: PlayerStateInterface = {
+  players: [],
   isLoading: false,
   isSuccessful: false,
   error: {},
 };
 
-export const allPlayerSlice = createSlice({
+export const PLayerSlice = createSlice({
   name: "allPlayer",
   initialState,
   reducers: {
@@ -29,8 +32,14 @@ export const allPlayerSlice = createSlice({
       state.result = action.payload;
     },
     // deletePlayerAction({payload:22})
-    deletePlayerAction: (state: any, action: PayloadAction<number>) => {
-      state.players = state.players.filter((e:Player) => e.id != action.payload)
+    deletePlayerAction: (state: any, action: PayloadAction<{}>) => {
+      state.players = state.players.filter(
+        (e: Player) => e.id != action.payload
+      );
+      state.isSuccessful = true;
+    },
+    addPlayerAction: (state: any, action: PayloadAction<{}>) => {
+      state.players = state.players.push(action.payload)
       state.isSuccessful = true;
     },
   },
@@ -41,6 +50,6 @@ export const {
   getAllPlayerSuccessAction,
   getAllPlayerFailedAction,
   deletePlayerAction,
-} = allPlayerSlice.actions;
+} = PLayerSlice.actions;
 
-export default allPlayerSlice.reducer;
+export default PLayerSlice.reducer;

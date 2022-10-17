@@ -1,4 +1,4 @@
-export interface AllPlayerStateInterface {
+export interface PlayerStateInterface {
   players: Player[];
   isLoading: boolean;
   isSuccessful: boolean;

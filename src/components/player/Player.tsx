@@ -18,15 +18,18 @@ import {
   notification,
 } from "antd";
 import React, { useEffect, useState } from "react";
-import { AllPlayerStateInterface } from "../../interface/redux-state/AllPlayerStateInterface";
+import { PlayerStateInterface } from "../../interface/redux-state/PlayerStateInterface";
 import { useAppDispatch, useAppSelector } from "../../redux-store/hooks";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {
   getAllPlayerSuccessAction,
   deletePlayerAction,
-} from "../../redux-store/reducer/allPlayerSlice";
+} from "../../redux-store/reducer/PlayerSlice";
 import Modals from "../../costum/Modals";
 import type { NotificationPlacement } from "antd/es/notification";
+import Selects from "../../costum/Selects";
+import { clubNom, countryNom } from "../../utils/ConstData";
+import { ClubName, CountryName } from "../../interface/Utils";
 
 interface Item {
   key: string;
@@ -51,7 +54,7 @@ const Player = () => {
   const [api, contextHolder] = notification.useNotification();
   const openNotification = React.useCallback(
     (placement: NotificationPlacement) => {
-      console.log(2)
+      console.log(2);
       api.info({
         message: `Notification ${placement}`,
         description: (
@@ -64,11 +67,13 @@ const Player = () => {
   );
 
   const handleOk = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
+    {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setOpen(false);
+      }, 3000);
+    }
   };
 
   const handleCancel = () => {
@@ -78,7 +83,7 @@ const Player = () => {
   const dispash = useAppDispatch();
   const [modal2Open, setModal2Open] = useState(false);
 
-  const playerSlices: AllPlayerStateInterface = useAppSelector(
+  const playerSlices: PlayerStateInterface = useAppSelector(
     (state) => state.allPlayers
   );
   const [form] = Form.useForm();
@@ -112,10 +117,6 @@ const Player = () => {
       ...record,
     });
     setEditingKey(record.key);
-  };
-
-  const cancel = () => {
-    setEditingKey("");
   };
 
   const columns = [
@@ -204,6 +205,7 @@ const Player = () => {
       ...col,
     };
   });
+
   const { Option } = Select;
 
   return (
@@ -282,56 +284,40 @@ const Player = () => {
           }}
         >
           <Col span={4}>
-            <Select
-              showSearch
-              style={{
-                width: 150,
-              }}
+            <Selects
+              typeSelect=""
               placeholder="Pays"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option!.children as unknown as string).includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA!.children as unknown as string)
-                  .toLowerCase()
-                  .localeCompare(
-                    (optionB!.children as unknown as string).toLowerCase()
-                  )
-              }
-            >
-              <Option value="1">Not Identified</Option>
-              <Option value="2">Closed</Option>
-              <Option value="3">Communicated</Option>
-              <Option value="4">Identified</Option>
-              <Option value="5">Resolved</Option>
-              <Option value="6">Cancelled</Option>
-            </Select>
+              style={{
+                width: "180px",
+              }}
+              options={countryNom.map((e: CountryName) => ({
+                value: "",
+                label: (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p>{e.nom}</p>
+                    <img src={e.logo} />
+                  </div>
+                ),
+              }))}
+            />
           </Col>
           <Col span={4}>
-            <Select
-              showSearch
-              style={{ width: 200 }}
-              placeholder="Club"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option!.children as unknown as string).includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA!.children as unknown as string)
-                  .toLowerCase()
-                  .localeCompare(
-                    (optionB!.children as unknown as string).toLowerCase()
-                  )
-              }
-            >
-              <Option value="1">Not Identified</Option>
-              <Option value="2">Closed</Option>
-              <Option value="3">Communicated</Option>
-              <Option value="4">Identified</Option>
-              <Option value="5">Resolved</Option>
-              <Option value="6">Cancelled</Option>
-            </Select>
+            <Selects
+              typeSelect=""
+              placeholder="Equipes"
+              style={{
+                width: "150px",
+              }}
+              options={clubNom.map((e: ClubName) => ({
+                value: e.id,
+                label: e.label,
+              }))}
+            />
           </Col>
         </Row>
 
@@ -400,7 +386,6 @@ const Player = () => {
             centered={true}
             visible={modal2Open}
             loading={loading}
-
             // onOk={() => setModal2Open(false)}
             openNotification={openNotification}
             // onCancel={() => setModal2Open(false)}
