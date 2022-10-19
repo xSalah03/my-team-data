@@ -25,12 +25,12 @@ import {
   deletePlayerAction,
   addPlayerAction,
 } from "../../redux-store/reducer/PlayerSlice";
-import Modals from "../../costum/Modals";
+import Modals from "./models/AddPlayer";
 import type { NotificationPlacement } from "antd/es/notification";
 import Selects from "../../costum/Selects";
 import { clubNom, countryNom } from "../../utils/ConstData";
 import { ClubName, CountryName } from "../../interface/Utils";
-import OnEdit from "./models/OnEdit";
+import OnEdit from "./models/UpdatePlayer";
 
 interface Item {
   key: string;
@@ -394,7 +394,7 @@ const Player = () => {
                     }}
                     icon={faPenToSquare}
                     onClick={() => {
-                      setUpdateData(e);
+                      setUpdateData({...e,equipe:e.id_equipe});
                       setModal3Open(true);
                     }}
                   />

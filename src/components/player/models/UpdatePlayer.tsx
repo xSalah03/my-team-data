@@ -6,30 +6,28 @@ import {
   ArrowLeftOutlined,
   DownloadOutlined,
 } from "@ant-design/icons";
-import Buttons from "./Buttons";
-import Inputs from "./Inputs";
-import DatePickers from "./DatePickers";
-import Selects from "./Selects";
-import {
-  lateralite,
-  poste,
-  playerSexe,
-  clubNom,
-  countryNom,
-} from "../utils/ConstData";
+import { message, Upload } from "antd";
+import type { UploadChangeParam } from "antd/es/upload";
+import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
+import Inputs from "../../../costum/Inputs";
+import DatePickers from "../../../costum/DatePickers";
+import Selects from "../../../costum/Selects";
 import {
   ClubName,
   CountryName,
   PlayerFoot,
   PlayerGender,
+  PlayerName,
   PlayerPost,
-} from "../interface/Utils";
-import { message, Upload } from "antd";
-import type { UploadChangeParam } from "antd/es/upload";
-import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
-import { useAppDispatch } from "../redux-store/hooks";
-import { addPlayerAction } from "../redux-store/reducer/PlayerSlice";
-import { Player } from "../interface/redux-state/PlayerStateInterface";
+} from "../../../interface/Utils";
+import {
+  clubNom,
+  countryNom,
+  lateralite,
+  playerSexe,
+  poste,
+} from "../../../utils/ConstData";
+import Buttons from "../../../costum/Buttons";
 import moment from "moment";
 
 type Props = {
@@ -40,6 +38,7 @@ type Props = {
   onOk: any;
   onCancel: any;
   loading?: any;
+  UpdateData?: any;
 };
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
@@ -68,10 +67,11 @@ const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const Modals = (props: Props) => {
+const OnEdit = (props: Props) => {
+  console.log(props.UpdateData);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
-  const dispash = useAppDispatch();
+
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -88,6 +88,8 @@ const Modals = (props: Props) => {
     }
   };
 
+  const dateFormat = "YYYY/MM/DD";
+
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -95,17 +97,8 @@ const Modals = (props: Props) => {
     </div>
   );
 
-  const onFinish = (values: Player) => {
+  const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
-    values.image = "";
-    values.instat_fullname = "";
-    values.category = "";
-    values.id = new Date().getTime();
-    values.taille = Number(values.taille);
-    values.poids = Number(values.poids);
-    values.date_naissance =
-      "" + moment(values.date_naissance).format("MM-DD-YYYY");
-    dispash(addPlayerAction(values));
   };
   const [form] = Form.useForm();
   useEffect(() => {
@@ -114,7 +107,6 @@ const Modals = (props: Props) => {
       props.openNotification({ name: "test" });
     };
   }, []);
-
   return (
     <div>
       <Modal
@@ -134,7 +126,18 @@ const Modals = (props: Props) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           className="login-form"
-          initialValues={{ remember: true }}
+          fields={ 
+            Object.keys(props.UpdateData).map(key => {
+            return {
+              name: [key],
+              value: ["nationalite"].includes(key) ? props.UpdateData[key].split(',') :(
+                ["date_naissance"].includes(key) ? moment(props.UpdateData[key]) : props.UpdateData[key]
+              ) 
+            }
+          })
+          
+          }
+           initialValues={{ remember: true }}
         >
           <div
             style={{
@@ -163,7 +166,7 @@ const Modals = (props: Props) => {
                 width: "200px",
               }}
               placeholder="Prenom"
-            />
+            /> 
           </div>
 
           <div
@@ -214,7 +217,9 @@ const Modals = (props: Props) => {
               }))}
             />
             <Selects
-              rules={[{ required: true, message: "Entrer la  lateralite!" }]}
+              rules={[
+                { required: true, message: "Selectionner la lateralite!" },
+              ]}
               typeSelect="form"
               name="lateralite"
               showSearch={false}
@@ -242,7 +247,6 @@ const Modals = (props: Props) => {
               ]}
               styleInput={{
                 width: "150px",
-                marginTop: "20px",
               }}
             />
 
@@ -256,7 +260,6 @@ const Modals = (props: Props) => {
               ]}
               styleInput={{
                 width: "150px",
-                marginTop: "20px",
               }}
             />
 
@@ -270,40 +273,16 @@ const Modals = (props: Props) => {
               ]}
               styleInput={{
                 width: "150px",
-                marginTop: "20px",
               }}
             />
-          </div>
-          <div
+          </div> 
+         <div
             style={{
               display: "flex",
               justifyContent: "space-between",
             }}
           >
-            {/* <Select
-    showSearch
-    style={{ width: 200 }}
-    placeholder="Search to Select"
-    optionFilterProp="children"
-    filterOption={(input, option) =>
-      (option!.children as unknown as string).includes(input)
-    }
-    filterSort={(optionA, optionB) =>
-      (optionA!.children as unknown as string)
-        .toLowerCase()
-        .localeCompare(
-          (optionB!.children as unknown as string).toLowerCase()
-        )
-    }
-  >
-    <Option value="1">Not Identified</Option>
-    <Option value="2">Closed</Option>
-    <Option value="3">Communicated</Option>
-    <Option value="4">Identified</Option>
-    <Option value="5">Resolved</Option>
-    <Option value="6">Cancelled</Option>
-  </Select> */}
-            <Selects
+             <Selects
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
               name="pays"
@@ -314,7 +293,7 @@ const Modals = (props: Props) => {
               filterOption={true}
               filterSort={true}
               options={countryNom.map((e: CountryName) => ({
-                value: e.nom,
+                value: e.id,
                 sort: e.id,
                 label: (
                   <div
@@ -327,9 +306,7 @@ const Modals = (props: Props) => {
                     <p>{e.nom}</p>
                     <img
                       style={{
-                        marginBottom: "12px",
                         width: "20px",
-                        height: "20px",
                       }}
                       src={e.logo}
                     />
@@ -340,7 +317,7 @@ const Modals = (props: Props) => {
             <Selects
               rules={[{ required: true, message: "Selectionner l'equipe!" }]}
               typeSelect="form"
-              name="id_equipe"
+              name="equipe"
               placeholder="Equipe"
               showSearch
               styleSelect={{
@@ -353,7 +330,7 @@ const Modals = (props: Props) => {
               filterSort={true}
               options={clubNom.map((e: ClubName) => ({
                 value: e.id,
-                search: e.label,
+                sort: e.id,
                 label: (
                   <div
                     style={{
@@ -365,9 +342,7 @@ const Modals = (props: Props) => {
                     <p>{e.label}</p>
                     <img
                       style={{
-                        marginBottom: "12px",
                         width: "20px",
-                        height: "20px",
                       }}
                       src={e.logo}
                     />
@@ -397,7 +372,7 @@ const Modals = (props: Props) => {
               filterOption={true}
               filterSort={true}
               options={countryNom.map((e: CountryName) => ({
-                value: e.nom,
+                value: e.id,
                 label: e.nom,
               }))}
             />
@@ -409,13 +384,34 @@ const Modals = (props: Props) => {
               name="national_team"
               placeholder="National team"
               showSearch
-              styleSelect={{ width: "200px" }}
+              styleSelect={{
+                display: "flex",
+                justifyContent: "center",
+                width: "200px",
+              }}
               optionFilterProp="children"
               filterOption={true}
               filterSort={true}
-              options={countryNom.map((e: CountryName) => ({
-                value: e.nom,
-                label: e.nom,
+              options={clubNom.map((e: ClubName) => ({
+                value: e.id,
+                sort: e.id,
+                label: (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p>{e.label}</p>
+                    <img
+                      style={{
+                        width: "20px",
+                      }}
+                      src={e.logo}
+                    />
+                  </div>
+                ),
               }))}
             />
           </div>
@@ -467,7 +463,7 @@ const Modals = (props: Props) => {
                 width: "100px",
               }}
             >
-              <Upload
+              {/* <Upload
                 accept=".png,.jpeg"
                 name="avatar"
                 listType="picture-card"
@@ -480,7 +476,7 @@ const Modals = (props: Props) => {
                 ) : (
                   uploadButton
                 )}
-              </Upload>
+              </Upload> */}
             </div>
           </div>
           {/* <Button htmlType="button" onClick={props.onCancel} key="back">
@@ -502,4 +498,4 @@ Submit
   );
 };
 
-export default Modals;
+export default OnEdit;

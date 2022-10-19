@@ -25,9 +25,8 @@ const Inputs = React.memo((props: Props) => {
           label={props.label}
           name={props.name}
           rules={props.rules}
-        >
+          >
           <Input
-            defaultValue={props.defaultValue}
             size={props.size}
             placeholder={props.placeholder}
             type={props.type}

@@ -53,8 +53,6 @@ const Selects = React.memo((props: Props) => {
         >
           <Select
             mode={props.mode}
-            defaultValue={props.defaultValue}
-            onSearch={() => filterOption()}
             showSearch={props.showSearch}
             style={props.styleSelect}
             placeholder={props.placeholder}
@@ -85,8 +83,8 @@ const Selects = React.memo((props: Props) => {
             (option!.children as unknown as string).includes(input)
           }
         >
-          {props.options.map((e: Options) => {
-            return <Option value={e.value}> {e.label} </Option>;
+          {props.options.map((e: Options,i:number) => {
+            return <Option key={i} value={e.value}> {e.label} </Option>;
           })}
         </Select>
       )}

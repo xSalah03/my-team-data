@@ -23,7 +23,6 @@ const DatePickers = React.memo((props: Props) => {
         rules={props.rules}
       >
         <DatePicker
-          defaultValue={props.defaultValue}
           placeholder={props.placeHolder}
           placement={props.placement}
           style={props.styleDatapicker}
