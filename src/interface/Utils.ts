@@ -15,6 +15,11 @@ export interface PlayerFoot {
   label: string;
 }
 
+export interface PlayerName {
+  id: number;
+  nom: string;
+}
+
 export interface PlayerGender {
   id: string;
   label: string;
@@ -32,6 +37,7 @@ export interface ClubName {
 }
 
 export interface CountryName {
+  id:number;
   nom: string;
   logo: string;
 }

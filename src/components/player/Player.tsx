@@ -12,7 +12,6 @@ import {
   Col,
   Form,
   Row,
-  Select,
   Table,
   Space,
   notification,
@@ -24,12 +23,14 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {
   getAllPlayerSuccessAction,
   deletePlayerAction,
+  addPlayerAction,
 } from "../../redux-store/reducer/PlayerSlice";
 import Modals from "../../costum/Modals";
 import type { NotificationPlacement } from "antd/es/notification";
 import Selects from "../../costum/Selects";
 import { clubNom, countryNom } from "../../utils/ConstData";
 import { ClubName, CountryName } from "../../interface/Utils";
+import OnEdit from "./models/OnEdit";
 
 interface Item {
   key: string;
@@ -48,7 +49,9 @@ const { confirm } = Modal;
 
 const Context = React.createContext({ name: "Default" });
 
+
 const Player = () => {
+  const [updateData, setUpdateData] = useState({});
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
@@ -78,20 +81,25 @@ const Player = () => {
 
   const handleCancel = () => {
     setModal2Open(false);
+    setModal3Open(false);
   };
 
   const dispash = useAppDispatch();
   const [modal2Open, setModal2Open] = useState(false);
+  const [modal3Open, setModal3Open] = useState(false);
 
   const playerSlices: PlayerStateInterface = useAppSelector(
     (state) => state.allPlayers
   );
+
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
   const isEditing = (record: Item) => record.key === editingKey;
+
   useEffect(() => {
     dispash(getAllPlayerSuccessAction([]));
   }, []);
+
   const showConfirm = (id: number) => {
     setTimeout(() => {
       confirm({
@@ -206,8 +214,6 @@ const Player = () => {
     };
   });
 
-  const { Option } = Select;
-
   return (
     <div>
       <div
@@ -286,12 +292,13 @@ const Player = () => {
           <Col span={4}>
             <Selects
               typeSelect=""
+              showSearch
               placeholder="Pays"
               style={{
                 width: "180px",
               }}
               options={countryNom.map((e: CountryName) => ({
-                value: "",
+                value: e.nom,
                 label: (
                   <div
                     style={{
@@ -300,7 +307,14 @@ const Player = () => {
                     }}
                   >
                     <p>{e.nom}</p>
-                    <img src={e.logo} />
+                    <img
+                      style={{
+                        marginTop: "5px",
+                        width: "20px",
+                        height: "20px",
+                      }}
+                      src={e.logo}
+                    />
                   </div>
                 ),
               }))}
@@ -309,13 +323,31 @@ const Player = () => {
           <Col span={4}>
             <Selects
               typeSelect=""
+              showSearch
               placeholder="Equipes"
               style={{
-                width: "150px",
+                width: "200px",
               }}
               options={clubNom.map((e: ClubName) => ({
                 value: e.id,
-                label: e.label,
+                label: (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p>{e.label}</p>
+                    <img
+                      style={{
+                        marginTop: "5px",
+                        width: "20px",
+                        height: "20px",
+                      }}
+                      src={e.logo}
+                    />
+                  </div>
+                ),
               }))}
             />
           </Col>
@@ -328,7 +360,7 @@ const Player = () => {
               // cell: EditableCell,
             },
           }}
-          dataSource={playerSlices.players.map((e) => {
+          dataSource={playerSlices.players.map((e, i) => {
             return {
               key: e.id.toString(),
               photo: (
@@ -361,7 +393,10 @@ const Player = () => {
                       color: "#38F281",
                     }}
                     icon={faPenToSquare}
-                    onClick={() => setModal2Open(true)}
+                    onClick={() => {
+                      setUpdateData(e);
+                      setModal3Open(true);
+                    }}
                   />
                   <FontAwesomeIcon
                     style={{
@@ -380,6 +415,21 @@ const Player = () => {
         />
       </div>
       <>
+        {modal3Open && (
+          <OnEdit
+          UpdateData={updateData}
+            title="Modifier le joueur"
+            centered={true}
+            visible={modal3Open}
+            loading={loading}
+            // onOk={() => setModal2Open(false)}
+            openNotification={openNotification}
+            // onCancel={() => setModal2Open(false)}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          />
+        )}
+
         {modal2Open && (
           <Modals
             title="Ajouter le joueur"

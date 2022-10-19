@@ -14,7 +14,7 @@
           "image": "http://apidata.myteam.ma/uploads/image-1659741388390.jpeg",
           "sexe": "f",
           "instat_fullname": "null",
-          "national_team": "1852",
+          "national_team": 1852,
           "category": null,
           "poids": 50,
           "taille": 150
@@ -50,7 +50,7 @@
           "image": "http://apidata.myteam.ma/uploads/image-1657294799839.jpeg",
           "sexe": "f",
           "instat_fullname": "null",
-          "national_team": "1852",
+          "national_team": 1852,
           "category": null,
           "poids": 50,
           "taille": 150

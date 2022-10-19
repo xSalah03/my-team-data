@@ -9,6 +9,7 @@ type Props = {
   style?: CSSProperties | undefined;
   label?: string;
   name: string;
+  defaultValue?: any;
   rules: Rule[] | undefined;
 };
 
@@ -16,8 +17,13 @@ const DatePickers = React.memo((props: Props) => {
   return (
     <>
       <Form.Item
-        style={props.style} label={props.label} name={props.name} rules={props.rules}>
+        style={props.style}
+        label={props.label}
+        name={props.name}
+        rules={props.rules}
+      >
         <DatePicker
+          defaultValue={props.defaultValue}
           placeholder={props.placeHolder}
           placement={props.placement}
           style={props.styleDatapicker}

@@ -1,6 +1,6 @@
-import {Form, Select } from "antd";
-import  { Rule } from "antd/lib/form";
-import React, { CSSProperties } from "react";
+import { Form, Select } from "antd";
+import { Rule } from "antd/lib/form";
+import React, { CSSProperties, useEffect, useState } from "react";
 
 type Props = {
   showSearch?: boolean;
@@ -16,16 +16,32 @@ type Props = {
   style?: CSSProperties | undefined;
   name?: string;
   typeSelect: string;
+  defaultValue?: string;
+  mode?: "multiple" | "tags" | undefined;
 };
 
 interface Options {
   value: string | number | undefined;
   label: string;
+  logo: string;
 }
 
 const { Option } = Select;
 
 const Selects = React.memo((props: Props) => {
+  const [defaultOption, setDefaultOption] = useState([]);
+  useEffect(() => {
+    setDefaultOption(props.options);
+    // console.log(props.options)
+  }, []);
+
+  const filterOption = () => {
+    return [defaultOption[0]];
+    props.options = defaultOption.filter((input: any, option: any) => {
+      return (option.search as unknown as string).includes(input);
+    });
+    console.log(filterOption);
+  };
   return (
     <>
       {props.typeSelect == "form" ? (
@@ -36,16 +52,26 @@ const Selects = React.memo((props: Props) => {
           rules={props.rules}
         >
           <Select
+            mode={props.mode}
+            defaultValue={props.defaultValue}
+            onSearch={() => filterOption()}
             showSearch={props.showSearch}
             style={props.styleSelect}
             placeholder={props.placeholder}
             optionFilterProp="children"
-            filterOption={(input, option) =>
-              (option!.children as unknown as string).includes(input)
-            }
+
+            // filterSort={(optionA:any, optionB:any) =>
+            //   (optionA!.sort as unknown as string)
+            //   .toLowerCase()
+            //   .localeCompare((optionB!.sort as unknown as string).toLowerCase())
+            // }
           >
-            {props.options.map((e: Options) => {
-              return <Option value={e.value}> {e.label} </Option>;
+            {props.options.map((e: Options, i: number) => {
+              return (
+                <Option key={i} value={e.value}>
+                  {e.label}
+                </Option>
+              );
             })}
           </Select>
         </Form.Item>

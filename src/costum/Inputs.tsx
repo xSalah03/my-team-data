@@ -7,6 +7,7 @@ type Props = {
   placeholder?: any;
   type?: any;
   typeInput: string;
+  defaultValue?: any;
   size?: SizeType;
   style?: React.CSSProperties | undefined;
   styleInput?: React.CSSProperties | undefined;
@@ -20,8 +21,13 @@ const Inputs = React.memo((props: Props) => {
     <>
       {props.typeInput == "form" ? (
         <Form.Item
-        style={props.style} label={props.label} name={props.name} rules={props.rules}>
+          style={props.style}
+          label={props.label}
+          name={props.name}
+          rules={props.rules}
+        >
           <Input
+            defaultValue={props.defaultValue}
             size={props.size}
             placeholder={props.placeholder}
             type={props.type}

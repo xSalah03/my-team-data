@@ -39,7 +39,8 @@ export const PLayerSlice = createSlice({
       state.isSuccessful = true;
     },
     addPlayerAction: (state: any, action: PayloadAction<{}>) => {
-      state.players = state.players.push(action.payload)
+      state.players.push(action.payload)
+      console.log( state.players )
       state.isSuccessful = true;
     },
   },
@@ -50,6 +51,7 @@ export const {
   getAllPlayerSuccessAction,
   getAllPlayerFailedAction,
   deletePlayerAction,
+  addPlayerAction
 } = PLayerSlice.actions;
 
 export default PLayerSlice.reducer;

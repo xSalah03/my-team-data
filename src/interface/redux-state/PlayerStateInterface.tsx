@@ -9,7 +9,7 @@ export interface Player {
   id: number;
   nom: string;
   prenom: string;
-  date_naissance: Date;
+  date_naissance: string;
   poste: string;
   lateralite: string;
   nationalite: string;
@@ -18,7 +18,7 @@ export interface Player {
   image: string;
   sexe: string;
   instat_fullname: any;
-  national_team: any;
+  national_team: number;
   category: any;
   poids: number;
   taille: number;
