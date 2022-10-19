@@ -29,6 +29,9 @@ import {
 } from "../../../utils/ConstData";
 import Buttons from "../../../costum/Buttons";
 import moment from "moment";
+import { updatePlaterAction } from "../../../redux-store/reducer/PlayerSlice";
+import { Player } from "../../../interface/redux-state/PlayerStateInterface";
+import { useAppDispatch } from "../../../redux-store/hooks";
 
 type Props = {
   title: string;
@@ -72,6 +75,8 @@ const OnEdit = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
+  const dispash = useAppDispatch();
+
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -97,8 +102,18 @@ const OnEdit = (props: Props) => {
     </div>
   );
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: Player) => {
     console.log("Received values of form: ", values);
+    values.image = "";
+    values.instat_fullname = "";
+    values.category = "";
+    values.id = props.UpdateData.id;
+    values.nationalite = ""+values.nationalite;
+    values.taille = Number(values.taille);
+    values.poids = Number(values.poids);
+    values.date_naissance =
+    "" + moment(values.date_naissance).format("MM-DD-YYYY");
+    dispash(updatePlaterAction(values));
   };
   const [form] = Form.useForm();
   useEffect(() => {
@@ -126,18 +141,17 @@ const OnEdit = (props: Props) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           className="login-form"
-          fields={ 
-            Object.keys(props.UpdateData).map(key => {
+          fields={Object.keys(props.UpdateData).map((key) => {
             return {
               name: [key],
-              value: ["nationalite"].includes(key) ? props.UpdateData[key].split(',') :(
-                ["date_naissance"].includes(key) ? moment(props.UpdateData[key]) : props.UpdateData[key]
-              ) 
-            }
-          })
-          
-          }
-           initialValues={{ remember: true }}
+              value: ["nationalite"].includes(key)
+                ? props.UpdateData[key].split(",")
+                : ["date_naissance"].includes(key)
+                ? moment(props.UpdateData[key])
+                : props.UpdateData[key],
+            };
+          })}
+          initialValues={{ remember: true }}
         >
           <div
             style={{
@@ -166,7 +180,7 @@ const OnEdit = (props: Props) => {
                 width: "200px",
               }}
               placeholder="Prenom"
-            /> 
+            />
           </div>
 
           <div
@@ -275,23 +289,21 @@ const OnEdit = (props: Props) => {
                 width: "150px",
               }}
             />
-          </div> 
-         <div
+          </div>
+          <div
             style={{
               display: "flex",
               justifyContent: "space-between",
             }}
           >
-             <Selects
+            <Selects
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
-              name="pays"
-              placeholder="Pays"
+              name="country"
               showSearch
+              placeholder="Pays"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
               options={countryNom.map((e: CountryName) => ({
                 value: e.id,
                 sort: e.id,
@@ -318,16 +330,14 @@ const OnEdit = (props: Props) => {
               rules={[{ required: true, message: "Selectionner l'equipe!" }]}
               typeSelect="form"
               name="equipe"
-              placeholder="Equipe"
               showSearch
+              placeholder="Equipe"
               styleSelect={{
                 display: "flex",
                 justifyContent: "center",
                 width: "200px",
               }}
               optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
               options={clubNom.map((e: ClubName) => ({
                 value: e.id,
                 sort: e.id,
@@ -355,7 +365,7 @@ const OnEdit = (props: Props) => {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "center",
             }}
           >
             <Selects
@@ -365,53 +375,13 @@ const OnEdit = (props: Props) => {
               typeSelect="form"
               mode="multiple"
               name="nationalite"
-              placeholder="Nationalite"
               showSearch
+              placeholder="Nationalite"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
               options={countryNom.map((e: CountryName) => ({
                 value: e.id,
                 label: e.nom,
-              }))}
-            />
-            <Selects
-              rules={[
-                { required: true, message: "Selectionner le national team!" },
-              ]}
-              typeSelect="form"
-              name="national_team"
-              placeholder="National team"
-              showSearch
-              styleSelect={{
-                display: "flex",
-                justifyContent: "center",
-                width: "200px",
-              }}
-              optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
-              options={clubNom.map((e: ClubName) => ({
-                value: e.id,
-                sort: e.id,
-                label: (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p>{e.label}</p>
-                    <img
-                      style={{
-                        width: "20px",
-                      }}
-                      src={e.logo}
-                    />
-                  </div>
-                ),
               }))}
             />
           </div>

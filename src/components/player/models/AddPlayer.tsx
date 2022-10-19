@@ -307,12 +307,10 @@ const Modals = (props: Props) => {
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
               name="pays"
-              placeholder="Pays"
               showSearch
+              placeholder="Pays"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
               options={countryNom.map((e: CountryName) => ({
                 value: e.nom,
                 sort: e.id,
@@ -349,8 +347,6 @@ const Modals = (props: Props) => {
                 width: "200px",
               }}
               optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
               options={clubNom.map((e: ClubName) => ({
                 value: e.id,
                 search: e.label,
@@ -380,7 +376,7 @@ const Modals = (props: Props) => {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "center",
             }}
           >
             <Selects
@@ -390,29 +386,10 @@ const Modals = (props: Props) => {
               typeSelect="form"
               mode="multiple"
               name="nationalite"
+              showSearch
               placeholder="Nationalite"
-              showSearch
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
-              options={countryNom.map((e: CountryName) => ({
-                value: e.nom,
-                label: e.nom,
-              }))}
-            />
-            <Selects
-              rules={[
-                { required: true, message: "Selectionner le national team!" },
-              ]}
-              typeSelect="form"
-              name="national_team"
-              placeholder="National team"
-              showSearch
-              styleSelect={{ width: "200px" }}
-              optionFilterProp="children"
-              filterOption={true}
-              filterSort={true}
               options={countryNom.map((e: CountryName) => ({
                 value: e.nom,
                 label: e.nom,

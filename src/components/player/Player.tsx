@@ -23,7 +23,6 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {
   getAllPlayerSuccessAction,
   deletePlayerAction,
-  addPlayerAction,
 } from "../../redux-store/reducer/PlayerSlice";
 import Modals from "./models/AddPlayer";
 import type { NotificationPlacement } from "antd/es/notification";
@@ -49,7 +48,6 @@ const { confirm } = Modal;
 
 const Context = React.createContext({ name: "Default" });
 
-
 const Player = () => {
   const [updateData, setUpdateData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -59,9 +57,9 @@ const Player = () => {
     (placement: NotificationPlacement) => {
       console.log(2);
       api.info({
-        message: `Notification ${placement}`,
+        message: "Notification",
         description: (
-          <Context.Consumer>{({ name }) => `Hello, ${name}!`}</Context.Consumer>
+          <Context.Consumer>{({ name }) =>"Le joueur a etait ajouter"}</Context.Consumer>
         ),
         placement,
       });
@@ -230,9 +228,9 @@ const Player = () => {
             onClick={() => setModal2Open(true)}
             type="primary"
             style={{
-              borderColor: "#13c2c2",
+              borderColor: "#ddccff",
               borderRadius: "10px",
-              backgroundColor: "#13c2c2",
+              backgroundColor: "#9966ff",
               marginRight: "10px",
             }}
           >
@@ -255,7 +253,9 @@ const Player = () => {
             onClick={() => setModal2Open(true)}
             type="primary"
             style={{
+              borderColor: "#b3d1ff",
               borderRadius: "10px",
+              backgroundColor: "#4da6ff",
             }}
           >
             <h4
@@ -390,18 +390,18 @@ const Player = () => {
                   <FontAwesomeIcon
                     style={{
                       cursor: "pointer",
-                      color: "#38F281",
+                      color: "#00b33c",
                     }}
                     icon={faPenToSquare}
                     onClick={() => {
-                      setUpdateData({...e,equipe:e.id_equipe});
+                      setUpdateData({ ...e, equipe: e.id_equipe });
                       setModal3Open(true);
                     }}
                   />
                   <FontAwesomeIcon
                     style={{
                       cursor: "pointer",
-                      color: "crimson",
+                      color: "#b30000",
                     }}
                     icon={faTrash}
                     onClick={() => showConfirm(e.id)}
@@ -417,7 +417,7 @@ const Player = () => {
       <>
         {modal3Open && (
           <OnEdit
-          UpdateData={updateData}
+            UpdateData={updateData}
             title="Modifier le joueur"
             centered={true}
             visible={modal3Open}
