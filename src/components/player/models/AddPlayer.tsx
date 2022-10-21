@@ -31,6 +31,7 @@ import { useAppDispatch } from "../../../redux-store/hooks";
 import { addPlayerAction } from "../../../redux-store/reducer/PlayerSlice";
 import { Player } from "../../../interface/redux-state/PlayerStateInterface";
 import moment from "moment";
+import { changeCountry } from "../../../redux-store/reducer/ClubSlice";
 
 type Props = {
   title: string;
@@ -68,7 +69,7 @@ const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const Modals = (props: Props) => {
+const AddPlayer = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const dispash = useAppDispatch();
@@ -96,16 +97,16 @@ const Modals = (props: Props) => {
   );
 
   const onFinish = (values: Player) => {
-    console.log("Received values of form: ", values);
-    values.image = "";
-    values.instat_fullname = "";
-    values.category = "";
-    values.id = new Date().getTime();
-    values.taille = Number(values.taille);
-    values.poids = Number(values.poids);
-    values.date_naissance =
-      "" + moment(values.date_naissance).format("MM-DD-YYYY");
-    dispash(addPlayerAction(values));
+     dispash(addPlayerAction({...values,
+      image : "",
+      instat_fullname : "",
+      category : "",
+      id : new Date().getTime(),
+      nationalite : String(values.nationalite),
+      taille : Number(values.taille),
+      poids : Number(values.poids),
+      date_naissance :  "" + moment(values.date_naissance).format("MM-DD-YYYY")
+    }));
   };
   const [form] = Form.useForm();
   useEffect(() => {
@@ -308,6 +309,7 @@ const Modals = (props: Props) => {
               typeSelect="form"
               name="pays"
               showSearch
+              onChange={(value:any) => dispash(changeCountry(value)) }
               placeholder="Pays"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
@@ -479,4 +481,4 @@ Submit
   );
 };
 
-export default Modals;
+export default AddPlayer;

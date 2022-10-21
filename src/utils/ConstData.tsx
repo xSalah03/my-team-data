@@ -1,6 +1,8 @@
 import {
+  ClubCompitition,
   ClubGender,
   ClubName,
+  ClubType,
   CountryName,
   PlayerFoot,
   PlayerGender,
@@ -395,12 +397,62 @@ export const clubNom: ClubName[] = [
 
 export const clubSexe: ClubGender[] = [
   {
-    id: "M",
+    id: "m",
     label: "Masculin",
   },
   {
-    id: "F",
+    id: "f",
     label: "Féminin",
+  },
+];
+
+export const clubCompitition: ClubCompitition[] = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  },
+  {
+    id: 4,
+  },
+  {
+    id: 5,
+  },
+  {
+    id: 6,
+  },
+  {
+    id: 7,
+  },
+  {
+    id: 8,
+  },
+  {
+    id: 9,
+  },
+  {
+    id: 10,
+  },
+  {
+    id: 11,
+  },
+  {
+    id: 12,
+  },
+];
+
+export const clubType: ClubType[] = [
+  {
+    id: 1,
+    label: "National Team",
+  },
+  {
+    id: 2,
+    label: "Club",
   },
 ];
 

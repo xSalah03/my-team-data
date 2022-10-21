@@ -17,6 +17,7 @@ type Props = {
   name?: string;
   typeSelect: string;
   defaultValue?: string;
+  onChange?: any;
   mode?: "multiple" | "tags" | undefined;
 };
 
@@ -52,6 +53,7 @@ const Selects = React.memo((props: Props) => {
           rules={props.rules}
         >
           <Select
+            onChange={props.onChange}
             mode={props.mode}
             showSearch={props.showSearch}
             style={props.styleSelect}
@@ -83,8 +85,13 @@ const Selects = React.memo((props: Props) => {
             (option!.children as unknown as string).includes(input)
           }
         >
-          {props.options.map((e: Options,i:number) => {
-            return <Option key={i} value={e.value}> {e.label} </Option>;
+          {props.options.map((e: Options, i: number) => {
+            return (
+              <Option key={i} value={e.value}>
+                {" "}
+                {e.label}{" "}
+              </Option>
+            );
           })}
         </Select>
       )}

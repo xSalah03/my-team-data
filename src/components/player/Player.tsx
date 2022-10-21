@@ -10,7 +10,6 @@ import {
   Button,
   Modal,
   Col,
-  Form,
   Row,
   Table,
   Space,
@@ -24,12 +23,13 @@ import {
   getAllPlayerSuccessAction,
   deletePlayerAction,
 } from "../../redux-store/reducer/PlayerSlice";
-import Modals from "./models/AddPlayer";
+import AddPlayer from "./models/AddPlayer";
 import type { NotificationPlacement } from "antd/es/notification";
 import Selects from "../../costum/Selects";
 import { clubNom, countryNom } from "../../utils/ConstData";
 import { ClubName, CountryName } from "../../interface/Utils";
-import OnEdit from "./models/UpdatePlayer";
+import UpdatePlayer from "./models/UpdatePlayer";
+import moment from "moment";
 
 interface Item {
   key: string;
@@ -53,13 +53,27 @@ const Player = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
+  const UpdateData = (e: any) => {
+    let newData = Object.create({});
+    Object.keys(e).forEach((key: any) => {
+      newData[key] = ["nationalite"].includes(key)
+        ? e[key].split(",")
+        : ["date_naissance"].includes(key)
+        ? moment(e[key])
+        : e[key];
+    });
+    setUpdateData(newData);
+    setModal3Open(true);
+  };
   const openNotification = React.useCallback(
     (placement: NotificationPlacement) => {
       console.log(2);
       api.info({
         message: "Notification",
         description: (
-          <Context.Consumer>{({ name }) =>"Le joueur a etait ajouter"}</Context.Consumer>
+          <Context.Consumer>
+            {({ name }) => "Le joueur a etait ajouter"}
+          </Context.Consumer>
         ),
         placement,
       });
@@ -90,10 +104,6 @@ const Player = () => {
     (state) => state.allPlayers
   );
 
-  const [form] = Form.useForm();
-  const [editingKey, setEditingKey] = useState("");
-  const isEditing = (record: Item) => record.key === editingKey;
-
   useEffect(() => {
     dispash(getAllPlayerSuccessAction([]));
   }, []);
@@ -112,17 +122,6 @@ const Player = () => {
         },
       });
     });
-  };
-
-  const edit = (record: Partial<Item> & { key: React.Key }) => {
-    form.setFieldsValue({
-      photo: "",
-      name: "",
-      age: "",
-      address: "",
-      ...record,
-    });
-    setEditingKey(record.key);
   };
 
   const columns = [
@@ -177,29 +176,6 @@ const Player = () => {
     {
       title: "operation",
       dataIndex: "operation",
-      // render: (_: any, record: Item) => {
-      //   const editable = isEditing(record);
-      //   return editable ? (
-      //     <span>
-      //       <Typography.Link
-      //         onClick={() => save(record.key)}
-      //         style={{ marginRight: 8 }}
-      //       >
-      //         Save
-      //       </Typography.Link>
-      //       <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-      //         <a>Cancel</a>
-      //       </Popconfirm>
-      //     </span>
-      //   ) : (
-      //     <Typography.Link
-      //       disabled={editingKey !== ""}
-      //       onClick={() => edit(record)}
-      //     >
-      //       Edit
-      //     </Typography.Link>
-      //   );
-      // },
     },
   ];
 
@@ -357,7 +333,6 @@ const Player = () => {
           pagination={{ pageSize: 5 }}
           components={{
             body: {
-              // cell: EditableCell,
             },
           }}
           dataSource={playerSlices.players.map((e, i) => {
@@ -393,10 +368,7 @@ const Player = () => {
                       color: "#00b33c",
                     }}
                     icon={faPenToSquare}
-                    onClick={() => {
-                      setUpdateData({ ...e, equipe: e.id_equipe });
-                      setModal3Open(true);
-                    }}
+                    onClick={() => UpdateData(e)}
                   />
                   <FontAwesomeIcon
                     style={{
@@ -416,7 +388,7 @@ const Player = () => {
       </div>
       <>
         {modal3Open && (
-          <OnEdit
+          <UpdatePlayer
             UpdateData={updateData}
             title="Modifier le joueur"
             centered={true}
@@ -431,7 +403,7 @@ const Player = () => {
         )}
 
         {modal2Open && (
-          <Modals
+          <AddPlayer
             title="Ajouter le joueur"
             centered={true}
             visible={modal2Open}

@@ -17,7 +17,7 @@ export const ClubSlice = createSlice({
     getAllClubRequestAction: (state: any) => {
       state.isLoading = true;
     },
-    getAllClubSuccessAction: (state: any, action: PayloadAction<any>) => {
+    getAllClubSuccessAction: (state: any,action: PayloadAction<any>) => {
       state.clubs = dataClubs.value;
 
       state.isLoading = false;
@@ -35,6 +35,12 @@ export const ClubSlice = createSlice({
       );
       state.isSuccessful = true;
     },
+    changeCountry: (state: any,action: PayloadAction<string> )=> {
+      state.clubs = dataClubs.value;
+      console.log(action.payload);
+      state.isLoading = false;
+      state.isSuccessful = true;
+    },
   },
 });
 
@@ -43,6 +49,7 @@ export const {
   getAllClubSuccessAction,
   getAllClubFailedAction,
   deleteClubAction,
+  changeCountry,
 } = ClubSlice.actions;
 
 export default ClubSlice.reducer;

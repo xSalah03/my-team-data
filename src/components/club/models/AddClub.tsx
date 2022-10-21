@@ -6,32 +6,38 @@ import {
   ArrowLeftOutlined,
   DownloadOutlined,
 } from "@ant-design/icons";
-import { message, Upload } from "antd";
-import type { UploadChangeParam } from "antd/es/upload";
-import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
+import Buttons from "../../../costum/Buttons";
 import Inputs from "../../../costum/Inputs";
 import DatePickers from "../../../costum/DatePickers";
 import Selects from "../../../costum/Selects";
 import {
+  lateralite,
+  poste,
+  playerSexe,
+  clubNom,
+  countryNom,
+  clubSexe,
+  clubType,
+  clubCompitition,
+} from "../../../utils/ConstData";
+import {
+  ClubCompitition,
+  ClubGender,
   ClubName,
+  ClubType,
   CountryName,
   PlayerFoot,
   PlayerGender,
-  PlayerName,
   PlayerPost,
 } from "../../../interface/Utils";
-import {
-  clubNom,
-  countryNom,
-  lateralite,
-  playerSexe,
-  poste,
-} from "../../../utils/ConstData";
-import Buttons from "../../../costum/Buttons";
-import moment from "moment";
-import { updatePlaterAction } from "../../../redux-store/reducer/PlayerSlice";
-import { Player } from "../../../interface/redux-state/PlayerStateInterface";
+import { message, Upload } from "antd";
+import type { UploadChangeParam } from "antd/es/upload";
+import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import { useAppDispatch } from "../../../redux-store/hooks";
+import { addPlayerAction } from "../../../redux-store/reducer/PlayerSlice";
+import { Player } from "../../../interface/redux-state/PlayerStateInterface";
+import moment from "moment";
+import { changeCountry } from "../../../redux-store/reducer/ClubSlice";
 
 type Props = {
   title: string;
@@ -41,7 +47,6 @@ type Props = {
   onOk: any;
   onCancel: any;
   loading?: any;
-  UpdateData?: any;
 };
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
@@ -62,21 +67,14 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
-
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const UpdatePlayer = (props: Props) => {
-  console.log(props.UpdateData);
+const AddClub = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
-
   const dispash = useAppDispatch();
-
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -93,8 +91,6 @@ const UpdatePlayer = (props: Props) => {
     }
   };
 
-  const dateFormat = "YYYY/MM/DD";
-
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -103,16 +99,20 @@ const UpdatePlayer = (props: Props) => {
   );
 
   const onFinish = (values: Player) => {
-    dispash(updatePlaterAction({...values,
-      image : "",
-      instat_fullname : "",
-      category : "",
-      id :props.UpdateData.id,
-      nationalite : String(values.nationalite),
-      taille : Number(values.taille),
-      poids : Number(values.poids),
-      date_naissance :  "" + moment(values.date_naissance).format("MM-DD-YYYY")
-    }));
+    console.log(values);
+    dispash(
+      addPlayerAction({
+        ...values,
+        image: "",
+        instat_fullname: "",
+        category: "",
+        id: new Date().getTime(),
+        nationalite: String(values.nationalite),
+        taille: Number(values.taille),
+        poids: Number(values.poids),
+        date_naissance: "" + moment(values.date_naissance).format("MM-DD-YYYY"),
+      })
+    );
   };
   const [form] = Form.useForm();
   useEffect(() => {
@@ -121,6 +121,7 @@ const UpdatePlayer = (props: Props) => {
       props.openNotification({ name: "test" });
     };
   }, []);
+
   return (
     <div>
       <Modal
@@ -140,7 +141,7 @@ const UpdatePlayer = (props: Props) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           className="login-form"
-          initialValues={props.UpdateData}
+          initialValues={{ remember: true }}
         >
           <div
             style={{
@@ -161,44 +162,14 @@ const UpdatePlayer = (props: Props) => {
             />
             <Inputs
               typeInput="form"
-              name="prenom"
+              name="slug"
               rules={[
                 { required: true, message: "Veuillez remplie le champ." },
               ]}
               styleInput={{
                 width: "200px",
               }}
-              placeholder="Prenom"
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <DatePickers
-              name="date_naissance"
-              placeHolder="Date naissance"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleDatapicker={{
-                width: "200px",
-              }}
-            />
-            <Selects
-              rules={[{ required: true, message: "Entrer le poste!" }]}
-              typeSelect="form"
-              name="poste"
-              showSearch={false}
-              placeholder="Poste"
-              styleSelect={{ width: "200px" }}
-              options={poste.map((e: PlayerPost) => ({
-                value: e.id,
-                label: e.label,
-              }))}
+              placeholder="Slug"
             />
           </div>
           <div
@@ -210,73 +181,26 @@ const UpdatePlayer = (props: Props) => {
             <Selects
               rules={[{ required: true, message: "Selectionner le sexe!" }]}
               typeSelect="form"
-              name="sexe"
+              name="type"
               showSearch={false}
-              placeholder="Sexe"
+              placeholder="Type"
               styleSelect={{ width: "200px" }}
-              options={playerSexe.map((e: PlayerGender) => ({
-                value: e.id,
+              options={clubType.map((e: ClubType) => ({
+                value: e.label,
                 label: e.label,
               }))}
             />
             <Selects
-              rules={[
-                { required: true, message: "Selectionner la lateralite!" },
-              ]}
+              rules={[{ required: true, message: "Entrer la  lateralite!" }]}
               typeSelect="form"
-              name="lateralite"
+              name="sexe"
               showSearch={false}
-              placeholder="Lateralité"
+              placeholder="Genre"
               styleSelect={{ width: "200px" }}
-              options={lateralite.map((e: PlayerFoot) => ({
+              options={clubSexe.map((e: ClubGender) => ({
                 value: e.id,
                 label: e.label,
               }))}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Inputs
-              typeInput="form"
-              type="number"
-              placeholder="Taille"
-              name="taille"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleInput={{
-                width: "150px",
-              }}
-            />
-
-            <Inputs
-              typeInput="form"
-              type="number"
-              placeholder="Poids"
-              name="poids"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleInput={{
-                width: "150px",
-              }}
-            />
-
-            <Inputs
-              typeInput="form"
-              type="number"
-              placeholder="Numero dossard"
-              name="numero_dossard"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleInput={{
-                width: "150px",
-              }}
             />
           </div>
           <div
@@ -288,13 +212,14 @@ const UpdatePlayer = (props: Props) => {
             <Selects
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
-              name="country"
+              name="pays"
               showSearch
+              onChange={(e:any) => dispash(changeCountry(e))}
               placeholder="Pays"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
               options={countryNom.map((e: CountryName) => ({
-                value: e.id,
+                value: e.nom,
                 sort: e.id,
                 label: (
                   <div
@@ -307,7 +232,9 @@ const UpdatePlayer = (props: Props) => {
                     <p>{e.nom}</p>
                     <img
                       style={{
+                        marginBottom: "12px",
                         width: "20px",
+                        height: "20px",
                       }}
                       src={e.logo}
                     />
@@ -318,59 +245,17 @@ const UpdatePlayer = (props: Props) => {
             <Selects
               rules={[{ required: true, message: "Selectionner l'equipe!" }]}
               typeSelect="form"
-              name="id_equipe"
+              name="compitition"
+              placeholder="Compitition"
               showSearch
-              placeholder="Equipe"
               styleSelect={{
                 display: "flex",
                 justifyContent: "center",
                 width: "200px",
               }}
               optionFilterProp="children"
-              options={clubNom.map((e: ClubName) => ({
+              options={clubCompitition.map((e: ClubCompitition) => ({
                 value: e.id,
-                sort: e.id,
-                label: (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p>{e.label}</p>
-                    <img
-                      style={{
-                        width: "20px",
-                      }}
-                      src={e.logo}
-                    />
-                  </div>
-                ),
-              }))}
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Selects
-              rules={[
-                { required: true, message: "Selectionner la nationalite!" },
-              ]}
-              typeSelect="form"
-              mode="multiple"
-              name="nationalite"
-              showSearch
-              placeholder="Nationalite"
-              styleSelect={{ width: "200px" }}
-              optionFilterProp="children"
-              options={countryNom.map((e: CountryName) => ({
-                value: e.nom,
-                label: e.nom,
               }))}
             />
           </div>
@@ -416,18 +301,44 @@ const UpdatePlayer = (props: Props) => {
                 key="submit"
               />
             </div>
-
             <div
               style={{
                 width: "100px",
               }}
             >
+              <Upload
+                accept=".png,.jpeg"
+                name="avatar"
+                listType="picture-card"
+                showUploadList={{ showPreviewIcon: false }}
+                action="http://localhost:3000/joueurs"
+                beforeUpload={beforeUpload}
+              >
+                {imageUrl ? (
+                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
             </div>
           </div>
+          {/* <Button htmlType="button" onClick={props.onCancel} key="back">
+  Return
+</Button>
+,
+<Button
+type="primary"
+htmlType="submit"
+key="submit"
+loading={props.loading}
+onClick={props.onOk}
+>
+Submit
+</Button> */}
         </Form>
       </Modal>
     </div>
   );
 };
 
-export default UpdatePlayer;
+export default AddClub;

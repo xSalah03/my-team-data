@@ -30,6 +30,15 @@ export interface ClubGender {
   label: string;
 }
 
+export interface ClubCompitition {
+  id: number;
+}
+
+export interface ClubType {
+  id: number;
+  label: string;
+}
+
 export interface ClubName {
   id: number;
   label: string;
@@ -37,7 +46,7 @@ export interface ClubName {
 }
 
 export interface CountryName {
-  id:number;
+  id: number;
   nom: string;
   logo: string;
 }
