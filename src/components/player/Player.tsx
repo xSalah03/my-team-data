@@ -53,6 +53,7 @@ const Player = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
+
   const UpdateData = (e: any) => {
     let newData = Object.create({});
     Object.keys(e).forEach((key: any) => {
@@ -188,8 +189,10 @@ const Player = () => {
     };
   });
 
+  console.log(playerSlices.players);
+
   return (
-    <div>
+    <>
       <div
         style={{
           marginTop: "20px",
@@ -332,8 +335,7 @@ const Player = () => {
         <Table
           pagination={{ pageSize: 5 }}
           components={{
-            body: {
-            },
+            body: {},
           }}
           dataSource={playerSlices.players.map((e, i) => {
             return {
@@ -423,7 +425,7 @@ const Player = () => {
         {contextHolder}
         <Space></Space>
       </Context.Provider>
-    </div>
+    </>
   );
 };
 

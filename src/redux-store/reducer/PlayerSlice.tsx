@@ -44,9 +44,11 @@ export const PLayerSlice = createSlice({
       state.isSuccessful = true;
     },
     updatePlaterAction: (state: any, action: PayloadAction<Player>) => {
-     let id =  state.players.findIndex((e:Player)=> e.id == action.payload.id);
-     if(id != -1) state.players[id] = action.payload ;
-     console.log(id,action.payload)
+      let id = state.players.findIndex(
+        (e: Player) => e.id == action.payload.id
+      );
+      if (id != -1) state.players[id] = action.payload;
+      console.log(id, action.payload);
       state.isSuccessful = true;
     },
   },

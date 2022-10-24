@@ -93,6 +93,22 @@ const Club = () => {
     }
   };
 
+  const showConfirm = (id: number) => {
+    setTimeout(() => {
+      confirm({
+        title: <h4>Supprimer le joueur</h4>,
+        icon: <ExclamationCircleOutlined />,
+        content: <p>Voullez vous supprimer ce ligne?</p>,
+        onOk() {
+          dispash(deletePlayerAction(id));
+        },
+        onCancel() {
+          console.log("Cancel");
+        },
+      });
+    });
+  };
+
   const handleCancel = () => {
     setModal2Open(false);
     setModal3Open(false);
@@ -129,92 +145,69 @@ const Club = () => {
   //   });
   // };
 
-  // const columns = [
-  //   {
-  //     title: "Photo",
-  //     dataIndex: "photo",
-  //     width: "5%",
-  //     editable: false,
-  //   },
-  //   {
-  //     title: "Nom complet",
-  //     dataIndex: "name",
-  //     width: "15%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "Date naissance",
-  //     dataIndex: "birth",
-  //     width: "20%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "Nationalite",
-  //     dataIndex: "nat",
-  //     width: "15%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "Equipe",
-  //     dataIndex: "team",
-  //     width: "10%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "Poste",
-  //     dataIndex: "post",
-  //     width: "5%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "Pied",
-  //     dataIndex: "foot",
-  //     width: "5%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "N°",
-  //     dataIndex: "num",
-  //     width: "5%",
-  //     editable: true,
-  //   },
-  //   {
-  //     title: "operation",
-  //     dataIndex: "operation",
-      // render: (_: any, record: Item) => {
-      //   const editable = isEditing(record);
-      //   return editable ? (
-      //     <span>
-      //       <Typography.Link
-      //         onClick={() => save(record.key)}
-      //         style={{ marginRight: 8 }}
-      //       >
-      //         Save
-      //       </Typography.Link>
-      //       <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-      //         <a>Cancel</a>
-      //       </Popconfirm>
-      //     </span>
-      //   ) : (
-      //     <Typography.Link
-      //       disabled={editingKey !== ""}
-      //       onClick={() => edit(record)}
-      //     >
-      //       Edit
-      //     </Typography.Link>
-      //   );
-  //     // },
-  //   },
-  // ];
+  const columns = [
+    {
+      title: "Photo",
+      dataIndex: "photo",
+      width: "5%",
+      editable: false,
+    },
+    {
+      title: "Nom complet",
+      dataIndex: "name",
+      width: "15%",
+      editable: true,
+    },
+    {
+      title: "Date naissance",
+      dataIndex: "birth",
+      width: "20%",
+      editable: true,
+    },
+    {
+      title: "Nationalite",
+      dataIndex: "nat",
+      width: "15%",
+      editable: true,
+    },
+    {
+      title: "Equipe",
+      dataIndex: "team",
+      width: "10%",
+      editable: true,
+    },
+    {
+      title: "Poste",
+      dataIndex: "post",
+      width: "5%",
+      editable: true,
+    },
+    {
+      title: "Pied",
+      dataIndex: "foot",
+      width: "5%",
+      editable: true,
+    },
+    {
+      title: "N°",
+      dataIndex: "num",
+      width: "5%",
+      editable: true,
+    },
+    {
+      title: "operation",
+      dataIndex: "operation",
+    },
+  ];
 
-  // const mergedColumns = columns.map((col) => {
-  //   if (!col.editable) {
-  //     return col;
-  //   }
-  //   return {
-  //     ...col,
-  //   };
-  // });
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+    };
+  });
 
   return (
     <div>
@@ -278,7 +271,7 @@ const Club = () => {
           </Button>
         </div>
       </div>
-      {/* <div
+      <div
         className="table"
         style={{
           marginBottom: "20px",
@@ -414,7 +407,7 @@ const Club = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
         />
-      </div> */}
+      </div>
       <>
         {modal2Open && (
           <AddClub

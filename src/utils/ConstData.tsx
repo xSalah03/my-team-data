@@ -46,9 +46,9 @@ export const items: SliderList[] = [
   },
   {
     key: 5,
-    href: "competition",
+    href: "competitions",
     icon: faTrophy,
-    label: "COMPETITION",
+    label: "COMPETITIONS",
   },
   {
     key: 6,

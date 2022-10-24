@@ -61,10 +61,6 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
-
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
@@ -73,21 +69,6 @@ const AddPlayer = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const dispash = useAppDispatch();
-  const handleChange: UploadProps["onChange"] = (
-    info: UploadChangeParam<UploadFile>
-  ) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
 
   const uploadButton = (
     <div>
@@ -111,7 +92,6 @@ const AddPlayer = (props: Props) => {
   const [form] = Form.useForm();
   useEffect(() => {
     return () => {
-      console.log("end");
       props.openNotification({ name: "test" });
     };
   }, []);

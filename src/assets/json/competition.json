@@ -1,0 +1,29 @@
+{
+  "success": 1,
+  "value": [
+    {
+      "id": 12,
+      "label": "CAN 2022 WOMEN",
+      "date_debut": "2022-07-02T00:00:00.000Z",
+      "date_fin": "2023-07-23T00:00:00.000Z",
+      "location": "MAROC",
+      "pays_org": "Morocco"
+    },
+    {
+      "id": 13,
+      "label": "BOTOLA PRO 1 INWI",
+      "date_debut": "2022-07-07T00:00:00.000Z",
+      "date_fin": "2023-02-16T00:00:00.000Z",
+      "location": "Morocco",
+      "pays_org": "Morocco"
+    },
+    {
+      "id": 14,
+      "label": "Coupe du trone",
+      "date_debut": "2022-08-15T00:00:00.000Z",
+      "date_fin": "2022-08-15T00:00:00.000Z",
+      "location": "Maroc",
+      "pays_org": "Morocco"
+    }
+  ]
+}
