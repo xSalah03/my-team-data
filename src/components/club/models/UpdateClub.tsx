@@ -1,28 +1,23 @@
 import { Form, Modal } from "antd";
-import { useEffect } from "react";
+import Buttons from "../../../costum/Buttons";
 import { ArrowLeftOutlined, DownloadOutlined } from "@ant-design/icons";
 import Inputs from "../../../costum/Inputs";
-import DatePickers from "../../../costum/DatePickers";
 import Selects from "../../../costum/Selects";
 import {
-  ClubName,
+  ClubCompetition,
+  ClubGender,
+  ClubType,
   CountryName,
-  PlayerFoot,
-  PlayerGender,
-  PlayerPost,
 } from "../../../interface/Utils";
 import {
-  countryNom,
-  lateralite,
-  playerSexe,
-  poste,
-} from "../../../utils/ConstData";
-import Buttons from "../../../costum/Buttons";
-import moment from "moment";
-import { updatePlayerAction } from "../../../redux-store/reducer/PlayerSlice";
-import { Player } from "../../../interface/redux-state/PlayerStateInterface";
+  changeCountry,
+  updateClubAction,
+} from "../../../redux-store/reducer/ClubSlice";
+import { clubSexe, clubType, countryNom } from "../../../utils/ConstData";
+import { Club } from "../../../interface/redux-state/ClubStateInterface";
 import { useAppDispatch, useAppSelector } from "../../../redux-store/hooks";
-import { ClubStateInterface } from "../../../interface/redux-state/ClubStateInterface";
+import { useEffect } from "react";
+import { CompetitionStateInterface } from "../../../interface/redux-state/CompetitionStateInterface";
 
 type Props = {
   title: string;
@@ -39,38 +34,33 @@ const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const UpdatePlayer = (props: Props) => {
-  const clubSlice: ClubStateInterface = useAppSelector(
+const UpdateClub = (props: Props) => {
+  const competitionSlice: CompetitionStateInterface = useAppSelector(
     (state) => {
-      return state.allClubs;
+      return state.allCompetitions;
     }
   );
   console.log(props.UpdateData);
-
   const dispash = useAppDispatch();
 
-  const onFinish = (values: Player) => {
+  const onFinish = (values: Club) => {
     dispash(
-      updatePlayerAction({
+      updateClubAction({
         ...values,
-        image: "",
-        instat_fullname: "",
-        category: "",
+        logo: "",
+        categories: "",
         id: props.UpdateData.id,
-        nationalite: String(values.nationalite),
-        taille: Number(values.taille),
-        poids: Number(values.poids),
-        numero_dossard: Number(values.numero_dossard),
-        date_naissance: "" + moment(values.date_naissance).format("MM-DD-YYYY"),
       })
     );
   };
+
   const [form] = Form.useForm();
   useEffect(() => {
     return () => {
       props.openNotification({ name: "test" });
     };
   }, []);
+
   return (
     <>
       <Modal
@@ -111,44 +101,14 @@ const UpdatePlayer = (props: Props) => {
             />
             <Inputs
               typeInput="form"
-              name="prenom"
+              name="slug"
               rules={[
                 { required: true, message: "Veuillez remplie le champ." },
               ]}
               styleInput={{
                 width: "200px",
               }}
-              placeholder="Prenom"
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <DatePickers
-              name="date_naissance"
-              placeHolder="Date naissance"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleDatapicker={{
-                width: "200px",
-              }}
-            />
-            <Selects
-              rules={[{ required: true, message: "Selectionner le poste!" }]}
-              typeSelect="form"
-              name="poste"
-              showSearch={false}
-              placeholder="Poste"
-              styleSelect={{ width: "200px" }}
-              options={poste.map((e: PlayerPost) => ({
-                value: e.id,
-                label: e.label,
-              }))}
+              placeholder="Slug"
             />
           </div>
           <div
@@ -160,73 +120,26 @@ const UpdatePlayer = (props: Props) => {
             <Selects
               rules={[{ required: true, message: "Selectionner le sexe!" }]}
               typeSelect="form"
-              name="sexe"
+              name="type"
               showSearch={false}
-              placeholder="Sexe"
+              placeholder="Type"
               styleSelect={{ width: "200px" }}
-              options={playerSexe.map((e: PlayerGender) => ({
-                value: e.id,
+              options={clubType.map((e: ClubType) => ({
+                value: e.label,
                 label: e.label,
               }))}
             />
             <Selects
-              rules={[
-                { required: true, message: "Selectionner la lateralite!" },
-              ]}
+              rules={[{ required: true, message: "Entrer la  lateralite!" }]}
               typeSelect="form"
-              name="lateralite"
+              name="sexe"
               showSearch={false}
-              placeholder="Lateralité"
+              placeholder="Genre"
               styleSelect={{ width: "200px" }}
-              options={lateralite.map((e: PlayerFoot) => ({
+              options={clubSexe.map((e: ClubGender) => ({
                 value: e.id,
                 label: e.label,
               }))}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Inputs
-              typeInput="form"
-              type="number"
-              placeholder="Taille"
-              name="taille"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleInput={{
-                width: "150px",
-              }}
-            />
-
-            <Inputs
-              typeInput="form"
-              type="number"
-              placeholder="Poids"
-              name="poids"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleInput={{
-                width: "150px",
-              }}
-            />
-
-            <Inputs
-              typeInput="form"
-              type="number"
-              placeholder="Numero dossard"
-              name="numero_dossard"
-              rules={[
-                { required: true, message: "Veuillez remplie le champ." },
-              ]}
-              styleInput={{
-                width: "150px",
-              }}
             />
           </div>
           <div
@@ -239,12 +152,13 @@ const UpdatePlayer = (props: Props) => {
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
               name="country"
-              showSearch
+              showSearch={false}
+              onChange={(e: any) => dispash(changeCountry(e))}
               placeholder="Pays"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
               options={countryNom.map((e: CountryName) => ({
-                value: e.id,
+                value: e.nom,
                 sort: e.id,
                 label: (
                   <div
@@ -257,7 +171,9 @@ const UpdatePlayer = (props: Props) => {
                     <p>{e.nom}</p>
                     <img
                       style={{
+                        marginBottom: "12px",
                         width: "20px",
+                        height: "20px",
                       }}
                       src={e.logo}
                     />
@@ -265,63 +181,23 @@ const UpdatePlayer = (props: Props) => {
                 ),
               }))}
             />
-            <Selects
-              rules={[{ required: true, message: "Selectionner l'equipe!" }]}
-              typeSelect="form"
-              name="id_equipe"
-              showSearch
-              placeholder="Equipe"
-              styleSelect={{
-                display: "flex",
-                justifyContent: "center",
-                width: "200px",
-              }}
-              optionFilterProp="children"
-              options={clubSlice.clubs.map((e: ClubName) => ({
-                value: e.id,
-                sort: e.id,
-                label: (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p>{e.nom}</p>
-                    <img
-                      style={{
-                        width: "20px",
-                      }}
-                      src={e.logo}
-                    />
-                  </div>
-                ),
-              }))}
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
             <Selects
               rules={[
-                { required: true, message: "Selectionner la nationalite!" },
+                { required: true, message: "Selectionner les competitions!" },
               ]}
               typeSelect="form"
               mode="multiple"
-              name="nationalite"
+              name="competitions"
               showSearch
-              placeholder="Nationalite"
+              placeholder="Compititions"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
-              options={countryNom.map((e: CountryName) => ({
-                value: e.nom,
-                label: e.nom,
-              }))}
+              options={competitionSlice.competitions.map(
+                (e: ClubCompetition) => ({
+                  value: e.id,
+                  label: e.label,
+                })
+              )}
             />
           </div>
           <div
@@ -373,4 +249,4 @@ const UpdatePlayer = (props: Props) => {
   );
 };
 
-export default UpdatePlayer;
+export default UpdateClub;

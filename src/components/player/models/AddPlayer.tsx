@@ -1,11 +1,6 @@
 import { Form, Modal } from "antd";
 import { useEffect, useState } from "react";
-import {
-  LoadingOutlined,
-  PlusOutlined,
-  ArrowLeftOutlined,
-  DownloadOutlined,
-} from "@ant-design/icons";
+import { ArrowLeftOutlined, DownloadOutlined } from "@ant-design/icons";
 import Buttons from "../../../costum/Buttons";
 import Inputs from "../../../costum/Inputs";
 import DatePickers from "../../../costum/DatePickers";
@@ -14,7 +9,6 @@ import {
   lateralite,
   poste,
   playerSexe,
-  clubNom,
   countryNom,
 } from "../../../utils/ConstData";
 import {
@@ -24,14 +18,12 @@ import {
   PlayerGender,
   PlayerPost,
 } from "../../../interface/Utils";
-import { message, Upload } from "antd";
-import type { UploadChangeParam } from "antd/es/upload";
-import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
-import { useAppDispatch } from "../../../redux-store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux-store/hooks";
 import { addPlayerAction } from "../../../redux-store/reducer/PlayerSlice";
 import { Player } from "../../../interface/redux-state/PlayerStateInterface";
 import moment from "moment";
 import { changeCountry } from "../../../redux-store/reducer/ClubSlice";
+import { ClubStateInterface } from "../../../interface/redux-state/ClubStateInterface";
 
 type Props = {
   title: string;
@@ -43,51 +35,34 @@ type Props = {
   loading?: any;
 };
 
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
-
-const beforeUpload = (file: RcFile) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
-
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
 const AddPlayer = (props: Props) => {
+  const clubSlice: ClubStateInterface = useAppSelector((state) => {
+    return state.allClubs;
+  });
+
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
   const dispash = useAppDispatch();
 
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
+  console.log(clubSlice);
 
   const onFinish = (values: Player) => {
-     dispash(addPlayerAction({...values,
-      image : "",
-      instat_fullname : "",
-      category : "",
-      id : new Date().getTime(),
-      nationalite : String(values.nationalite),
-      taille : Number(values.taille),
-      poids : Number(values.poids),
-      date_naissance :  "" + moment(values.date_naissance).format("MM-DD-YYYY")
-    }));
+    dispash(
+      addPlayerAction({
+        ...values,
+        image: "",
+        instat_fullname: "",
+        category: "",
+        id: new Date().getTime(),
+        nationalite: String(values.nationalite),
+        taille: Number(values.taille),
+        poids: Number(values.poids),
+        date_naissance: "" + moment(values.date_naissance).format("MM-DD-YYYY"),
+      })
+    );
   };
   const [form] = Form.useForm();
   useEffect(() => {
@@ -97,7 +72,7 @@ const AddPlayer = (props: Props) => {
   }, []);
 
   return (
-    <div>
+    <>
       <Modal
         footer={[]}
         title={props.title}
@@ -261,35 +236,12 @@ const AddPlayer = (props: Props) => {
               justifyContent: "space-between",
             }}
           >
-            {/* <Select
-    showSearch
-    style={{ width: 200 }}
-    placeholder="Search to Select"
-    optionFilterProp="children"
-    filterOption={(input, option) =>
-      (option!.children as unknown as string).includes(input)
-    }
-    filterSort={(optionA, optionB) =>
-      (optionA!.children as unknown as string)
-        .toLowerCase()
-        .localeCompare(
-          (optionB!.children as unknown as string).toLowerCase()
-        )
-    }
-  >
-    <Option value="1">Not Identified</Option>
-    <Option value="2">Closed</Option>
-    <Option value="3">Communicated</Option>
-    <Option value="4">Identified</Option>
-    <Option value="5">Resolved</Option>
-    <Option value="6">Cancelled</Option>
-  </Select> */}
             <Selects
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
               name="pays"
               showSearch
-              onChange={(value:any) => dispash(changeCountry(value)) }
+              onChange={(value: any) => dispash(changeCountry(value))}
               placeholder="Pays"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
@@ -329,21 +281,19 @@ const AddPlayer = (props: Props) => {
                 width: "200px",
               }}
               optionFilterProp="children"
-              options={clubNom.map((e: ClubName) => ({
-                value: e.id,
-                search: e.label,
+              options={clubSlice.clubs.map((e: ClubName) => ({
+                id: e.id,
                 label: (
                   <div
                     style={{
                       display: "flex",
-                      alignItems: "center",
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>{e.label}</p>
+                    <p>{e.nom}</p>
                     <img
                       style={{
-                        marginBottom: "12px",
+                        marginTop: "5px",
                         width: "20px",
                         height: "20px",
                       }}
@@ -420,44 +370,10 @@ const AddPlayer = (props: Props) => {
                 key="submit"
               />
             </div>
-
-            <div
-              style={{
-                width: "100px",
-              }}
-            >
-              <Upload
-                accept=".png,.jpeg"
-                name="avatar"
-                listType="picture-card"
-                showUploadList={{ showPreviewIcon: false }}
-                action="http://localhost:3000/joueurs"
-                beforeUpload={beforeUpload}
-              >
-                {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
-            </div>
           </div>
-          {/* <Button htmlType="button" onClick={props.onCancel} key="back">
-  Return
-</Button>
-,
-<Button
-type="primary"
-htmlType="submit"
-key="submit"
-loading={props.loading}
-onClick={props.onOk}
->
-Submit
-</Button> */}
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 

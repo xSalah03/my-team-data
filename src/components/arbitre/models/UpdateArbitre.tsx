@@ -1,30 +1,15 @@
+import { Form, Modal } from "antd";
 import { useEffect } from "react";
-import {
-  ArrowLeftOutlined,
-  DownloadOutlined,
-} from "@ant-design/icons";
 import Buttons from "../../../costum/Buttons";
+import { ArrowLeftOutlined, DownloadOutlined } from "@ant-design/icons";
 import Inputs from "../../../costum/Inputs";
 import Selects from "../../../costum/Selects";
-import {
-  countryNom,
-  clubSexe,
-  clubType,
-} from "../../../utils/ConstData";
-import {
-  ClubCompetition,
-  ClubGender,
-  ClubType,
-  CountryName,
-} from "../../../interface/Utils";
-import { Form, Modal } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../redux-store/hooks";
-import {
-  addClubAction,
-  changeCountry,
-} from "../../../redux-store/reducer/ClubSlice";
-import { Club } from "../../../interface/redux-state/ClubStateInterface";
-import { CompetitionStateInterface } from "../../../interface/redux-state/CompetitionStateInterface";
+import { Arbitre } from "../../../interface/redux-state/ArbitreStateInterface";
+import { ArbitreRole, CountryName } from "../../../interface/Utils";
+import { useAppDispatch } from "../../../redux-store/hooks";
+import { updateArbitreAction } from "../../../redux-store/reducer/ArbitreSlice";
+import { changeCountry } from "../../../redux-store/reducer/ClubSlice";
+import { arbitreRole, countryNom } from "../../../utils/ConstData";
 
 type Props = {
   title: string;
@@ -34,38 +19,30 @@ type Props = {
   onOk: any;
   onCancel: any;
   loading?: any;
+  UpdateData?: any;
 };
 
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const AddClub = (props: Props) => {
-  const competitionSlice: CompetitionStateInterface = useAppSelector(
-    (state) => {
-      return state.allCompetitions;
-    }
-  );
+const UpdateArbitre = (props: Props) => {
   const dispash = useAppDispatch();
-  console.log(competitionSlice.competitions);
 
-  const onFinish = (values: Club) => {
-    console.log(values);
+  const onFinish = (values: Arbitre) => {
     dispash(
-      addClubAction({
+      updateArbitreAction({
         ...values,
-        logo: "",
-        categories: "",
-        competitions: String(values.competitions),
-        id: new Date().getTime(),
-        country: String(values.country),
+        photo: "",
+        id: props.UpdateData.id,
+        nationalite: String(values.nationalite),
       })
     );
   };
+
   const [form] = Form.useForm();
   useEffect(() => {
     return () => {
-      console.log("end");
       props.openNotification({ name: "test" });
     };
   }, []);
@@ -89,7 +66,7 @@ const AddClub = (props: Props) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           className="login-form"
-          initialValues={{ remember: true }}
+          initialValues={props.UpdateData}
         >
           <div
             style={{
@@ -110,16 +87,17 @@ const AddClub = (props: Props) => {
             />
             <Inputs
               typeInput="form"
-              name="slug"
+              name="prenom"
               rules={[
                 { required: true, message: "Veuillez remplie le champ." },
               ]}
               styleInput={{
                 width: "200px",
               }}
-              placeholder="Slug"
+              placeholder="Prenom"
             />
           </div>
+
           <div
             style={{
               display: "flex",
@@ -127,43 +105,24 @@ const AddClub = (props: Props) => {
             }}
           >
             <Selects
-              rules={[{ required: true, message: "Selectionner le sexe!" }]}
+              rules={[{ required: true, message: "Entrer le poste!" }]}
               typeSelect="form"
-              name="type"
+              name="role"
               showSearch={false}
-              placeholder="Type"
+              placeholder="Role"
               styleSelect={{ width: "200px" }}
-              options={clubType.map((e: ClubType) => ({
+              options={arbitreRole.map((e: ArbitreRole) => ({
                 value: e.label,
                 label: e.label,
               }))}
             />
             <Selects
-              rules={[{ required: true, message: "Entrer la  lateralite!" }]}
-              typeSelect="form"
-              name="sexe"
-              showSearch={false}
-              placeholder="Genre"
-              styleSelect={{ width: "200px" }}
-              options={clubSexe.map((e: ClubGender) => ({
-                value: e.id,
-                label: e.label,
-              }))}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Selects
               rules={[{ required: true, message: "Selectionner le pays!" }]}
               typeSelect="form"
-              name="country"
+              name="nationalite"
               showSearch
-              onChange={(e: any) => dispash(changeCountry(e))}
-              placeholder="Pays"
+              onChange={(value: any) => dispash(changeCountry(value))}
+              placeholder="Nationalite"
               styleSelect={{ width: "200px" }}
               optionFilterProp="children"
               options={countryNom.map((e: CountryName) => ({
@@ -189,24 +148,6 @@ const AddClub = (props: Props) => {
                   </div>
                 ),
               }))}
-            />
-            <Selects
-              rules={[
-                { required: true, message: "Selectionner les competitions!" },
-              ]}
-              typeSelect="form"
-              mode="multiple"
-              name="competitions"
-              showSearch
-              placeholder="Compititions"
-              styleSelect={{ width: "200px" }}
-              optionFilterProp="children"
-              options={competitionSlice.competitions.map(
-                (e: ClubCompetition) => ({
-                  value: e.id,
-                  label: e.label,
-                })
-              )}
             />
           </div>
           <div
@@ -258,4 +199,4 @@ const AddClub = (props: Props) => {
   );
 };
 
-export default AddClub;
+export default UpdateArbitre;

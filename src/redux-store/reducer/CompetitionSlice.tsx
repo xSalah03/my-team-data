@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import dataCompetitions from "../../assets/json/competition.json";
+import dataCompetitions from "../../assets/json/competitions.json";
 import {
   Competition,
   CompetitionStateInterface,
@@ -21,12 +21,8 @@ export const CompetitionSlice = createSlice({
     getAllCompetitionRequestAction: (state: any) => {
       state.isLoading = true;
     },
-    getAllCompetitionSuccessAction: (
-      state: any,
-      action: PayloadAction<any>
-    ) => {
+    getAllCompetitionSuccessAction: (state: any, action: PayloadAction<any>) => {
       state.competitions = dataCompetitions.value;
-
       state.isLoading = false;
       state.isSuccessful = true;
     },
@@ -35,11 +31,9 @@ export const CompetitionSlice = createSlice({
       state.isSuccessful = false;
       state.result = action.payload;
     },
-    // deletePlayerAction({payload:22})
+
     deleteCompetitionAction: (state: any, action: PayloadAction<{}>) => {
-      state.competitions = state.competitions.filter(
-        (e: Competition) => e.id != action.payload
-      );
+      state.competitions = state.competitions.filter((e: Competition) => e.id != action.payload);
       state.isSuccessful = true;
     },
     addCompetitionAction: (state: any, action: PayloadAction<{}>) => {

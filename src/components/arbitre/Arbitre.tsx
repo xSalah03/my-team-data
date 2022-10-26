@@ -1,43 +1,55 @@
-import { Button, Modal, notification, Space, Table } from "antd";
+import { Avatar, Button, Modal, notification, Space, Table } from "antd";
+import { NotificationPlacement } from "antd/es/notification";
 import React, { useEffect, useState } from "react";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import {
-  deleteCompetitionAction,
-  getAllCompetitionSuccessAction,
-  status,
-} from "../../redux-store/reducer/CompetitionSlice";
+import { ArbitreStateInterface } from "../../interface/redux-state/ArbitreStateInterface";
 import { useAppDispatch, useAppSelector } from "../../redux-store/hooks";
+import {
+  deleteArbitreAction,
+  getAllArbitreSuccessAction,
+  status,
+} from "../../redux-store/reducer/ArbitreSlice";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFileImport,
   faPenToSquare,
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CompetitionStateInterface } from "../../interface/redux-state/CompetitionStateInterface";
-import moment from "moment";
-import { NotificationPlacement } from "antd/es/notification";
-import AddCompetition from "./models/AddCompetition";
-import UpdateCompetition from "./models/UpdateCompetition";
+import UpdateArbitre from "./models/UpdateArbitre";
+import AddArbitre from "./models/AddArbitre";
 
 interface Item {
-  key: string;
-  label: string;
-  dateDebut: Date;
-  dateFin: Date;
-  location: string;
-  paysOrg: string;
+  key: number;
+  name: string;
+  fname: string;
+  role: string;
+  nat: string;
+  photo: any;
+  operation: any;
 }
 
-const { confirm } = Modal;
+type Props = {};
 
+const { confirm } = Modal;
 const Context = React.createContext({ name: "Default" });
 
-const Competition = () => {
+const Arbitre = () => {
   const [modal2Open, setModal2Open] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
+
+  console.log(modal2Open);
+  const handleOk = () => {
+    {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setOpen(false);
+      }, 3000);
+    }
+  };
 
   const handleCancel = () => {
     setModal2Open(false);
@@ -50,35 +62,20 @@ const Competition = () => {
   const UpdateData = (e: any) => {
     let newData = Object.create({});
     Object.keys(e).forEach((key: any) => {
-      newData[key] = ["pays_org"].includes(key)
-        ? e[key].split(",")
-        : ["date_debut", "date_fin"].includes(key)
-        ? moment(e[key])
-        : e[key];
+      newData[key] = e[key];
     });
     setUpdateData(newData);
     setModal3Open(true);
     dispash(status(false));
   };
 
-  const handleOk = () => {
-    {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setOpen(false);
-      }, 3000);
-    }
-  };
-
   const openNotification = React.useCallback(
     (placement: NotificationPlacement) => {
-      console.log(2);
       api.info({
         message: "Notification",
         description: (
           <Context.Consumer>
-            {({ name }) => "La competition a etait ajouter"}
+            {({ name }) => "L'arbitre a etait ajouter"}
           </Context.Consumer>
         ),
         placement,
@@ -87,22 +84,22 @@ const Competition = () => {
     []
   );
 
-  const competitionSlices: CompetitionStateInterface = useAppSelector(
-    (state) => state.allCompetitions
+  const arbitreSlice: ArbitreStateInterface = useAppSelector(
+    (state) => state.allArbitres
   );
 
   const dispash = useAppDispatch();
 
   useEffect(() => {
-    dispash(getAllCompetitionSuccessAction([]));
+    dispash(getAllArbitreSuccessAction([]));
   }, []);
 
   useEffect(() => {
-    if (competitionSlices.isValid) {
+    if (arbitreSlice.isValid) {
       setModal3Open(false);
       setModal2Open(false);
     }
-  }, [competitionSlices.isValid]);
+  }, [arbitreSlice.isValid]);
 
   const showConfirm = (id: number) => {
     setTimeout(() => {
@@ -111,7 +108,7 @@ const Competition = () => {
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
         onOk() {
-          dispash(deleteCompetitionAction(id));
+          dispash(deleteArbitreAction(id));
         },
         onCancel() {},
       });
@@ -120,29 +117,29 @@ const Competition = () => {
 
   const columns = [
     {
-      title: "Label",
-      dataIndex: "label",
+      title: "Photo",
+      dataIndex: "photo",
+      width: "10%",
+    },
+    {
+      title: "Nom",
+      dataIndex: "name",
       width: "20%",
     },
     {
-      title: "Date debut",
-      dataIndex: "dateDebut",
-      width: "15%",
+      title: "Prenom",
+      dataIndex: "fname",
+      width: "20%",
     },
     {
-      title: "Date fin",
-      dataIndex: "dateFin",
-      width: "15%",
+      title: "Role",
+      dataIndex: "role",
+      width: "20%",
     },
     {
-      title: "Location",
-      dataIndex: "location",
-      width: "15%",
-    },
-    {
-      title: "Pays Organictrice",
-      dataIndex: "paysOrg",
-      width: "15%",
+      title: "Nationalite",
+      dataIndex: "nat",
+      width: "20%",
     },
     {
       title: "operation",
@@ -155,6 +152,7 @@ const Competition = () => {
       ...col,
     };
   });
+
   return (
     <>
       <div
@@ -234,14 +232,19 @@ const Competition = () => {
           components={{
             body: {},
           }}
-          dataSource={competitionSlices.competitions.map((e, i) => {
+          dataSource={arbitreSlice.arbitres.map((e, i) => {
             return {
-              key: e.id.toString(),
-              label: <h4>{e.label}</h4>,
-              dateDebut: new Date(e.date_debut).toLocaleDateString(),
-              dateFin: new Date(e.date_fin).toLocaleDateString(),
-              location: e.location,
-              paysOrg: e.pays_org,
+              key: e.id,
+              name: <h4>{e.nom}</h4>,
+              fname: <h4>{e.prenom}</h4>,
+              role: e.role,
+              nat: e.nationalite,
+              photo: (
+                <Avatar
+                  size="large"
+                  icon={<img src={e.photo} alt={"photo"} />}
+                />
+              ),
               operation: (
                 <span
                   style={{
@@ -275,9 +278,9 @@ const Competition = () => {
       </div>
       <>
         {modal3Open && (
-          <UpdateCompetition
+          <UpdateArbitre
             UpdateData={updateData}
-            title="Modifier la competition"
+            title="Modifier l'arbitre"
             centered={true}
             visible={modal3Open}
             loading={loading}
@@ -288,8 +291,8 @@ const Competition = () => {
         )}
 
         {modal2Open && (
-          <AddCompetition
-            title="Ajouter la competition"
+          <AddArbitre
+            title="Ajouter l'arbitre"
             centered={true}
             visible={modal2Open}
             loading={loading}
@@ -307,4 +310,4 @@ const Competition = () => {
   );
 };
 
-export default Competition;
+export default Arbitre;

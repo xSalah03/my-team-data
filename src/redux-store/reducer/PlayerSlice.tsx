@@ -10,6 +10,7 @@ const initialState: PlayerStateInterface = {
   players: [],
   isLoading: false,
   isSuccessful: false,
+  isValid: false,
   error: {},
 };
 
@@ -43,11 +44,15 @@ export const PLayerSlice = createSlice({
       console.log(state.players);
       state.isSuccessful = true;
     },
-    updatePlaterAction: (state: any, action: PayloadAction<Player>) => {
+    status: (state: any, action: PayloadAction<boolean>) => {
+      state.isValid = action.payload;
+    },
+    updatePlayerAction: (state: any, action: PayloadAction<Player>) => {
       let id = state.players.findIndex(
         (e: Player) => e.id == action.payload.id
       );
       if (id != -1) state.players[id] = action.payload;
+      state.isValid = true;
       console.log(id, action.payload);
       state.isSuccessful = true;
     },
@@ -60,7 +65,8 @@ export const {
   getAllPlayerFailedAction,
   deletePlayerAction,
   addPlayerAction,
-  updatePlaterAction,
+  updatePlayerAction,
+  status,
 } = PLayerSlice.actions;
 
 export default PLayerSlice.reducer;

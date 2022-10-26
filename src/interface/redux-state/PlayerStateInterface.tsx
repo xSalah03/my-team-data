@@ -2,6 +2,7 @@ export interface PlayerStateInterface {
   players: Player[];
   isLoading: boolean;
   isSuccessful: boolean;
+  isValid: boolean;
   error?: any;
 }
 
@@ -13,7 +14,7 @@ export interface Player {
   poste: string;
   lateralite: string;
   nationalite: string;
-  numero_dossard: string;
+  numero_dossard: number;
   id_equipe: number;
   image: string;
   sexe: string;

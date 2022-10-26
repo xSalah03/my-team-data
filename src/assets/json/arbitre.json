@@ -1,0 +1,29 @@
+{
+  "success": 1,
+  "value": [
+    {
+      "id": 2,
+      "nom": "Jani",
+      "prenom": "Sikazwy",
+      "role": "Arbitre central",
+      "nationalite": "Uganda",
+      "photo": "http://apidata.myteam.ma/uploads/photo-1657233350234.png"
+    },
+    {
+      "id": 3,
+      "nom": "Jayed",
+      "prenom": "Redwan",
+      "role": "Arbitre central Var",
+      "nationalite": "Morocco",
+      "photo": "http://localhost:5000/uploads/photo-1656941729790.jpeg"
+    },
+    {
+      "id": 4,
+      "nom": "Packuita Cynquela Rivet",
+      "prenom": "MARIA",
+      "role": "Arbitre central",
+      "nationalite": "Mauritius",
+      "photo": "null"
+    }
+  ]
+}

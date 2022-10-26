@@ -1,8 +1,6 @@
 import { Form, Modal } from "antd";
 import { useEffect, useState } from "react";
 import {
-  LoadingOutlined,
-  PlusOutlined,
   ArrowLeftOutlined,
   DownloadOutlined,
 } from "@ant-design/icons";
@@ -10,15 +8,8 @@ import Buttons from "../../../costum/Buttons";
 import Inputs from "../../../costum/Inputs";
 import DatePickers from "../../../costum/DatePickers";
 import Selects from "../../../costum/Selects";
-import {
-  countryNom,
-} from "../../../utils/ConstData";
-import {
-  CountryName,
-} from "../../../interface/Utils";
-import { message, Upload } from "antd";
-import type { UploadChangeParam } from "antd/es/upload";
-import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
+import { countryNom } from "../../../utils/ConstData";
+import { CountryName } from "../../../interface/Utils";
 import { useAppDispatch } from "../../../redux-store/hooks";
 import { Competition } from "../../../interface/redux-state/CompetitionStateInterface";
 import moment from "moment";
@@ -34,58 +25,14 @@ type Props = {
   loading?: any;
 };
 
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
-
-const beforeUpload = (file: RcFile) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
-
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
-
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
 const AddCompetition = (props: Props) => {
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
-  const dispash = useAppDispatch();
-  const handleChange: UploadProps["onChange"] = (
-    info: UploadChangeParam<UploadFile>
-  ) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
 
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
+  const [loading, setLoading] = useState(false);
+  const dispash = useAppDispatch();
 
   const onFinish = (values: Competition) => {
     dispash(
@@ -98,16 +45,17 @@ const AddCompetition = (props: Props) => {
       })
     );
   };
+
   const [form] = Form.useForm();
   useEffect(() => {
     return () => {
-      console.log("end");
       props.openNotification({ name: "test" });
     };
   }, []);
 
   return (
-    <div>
+    
+    <>
       <Modal
         footer={[]}
         title={props.title}
@@ -272,25 +220,11 @@ const AddCompetition = (props: Props) => {
                 width: "100px",
               }}
             >
-              <Upload
-                accept=".png,.jpeg"
-                name="avatar"
-                listType="picture-card"
-                showUploadList={{ showPreviewIcon: false }}
-                action="http://localhost:3000/joueurs"
-                beforeUpload={beforeUpload}
-              >
-                {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
             </div>
           </div>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 

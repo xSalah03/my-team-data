@@ -1,12 +1,10 @@
 import {
-  ClubCompitition,
+  ArbitreRole,
   ClubGender,
-  ClubName,
   ClubType,
   CountryName,
   PlayerFoot,
   PlayerGender,
-  PlayerName,
   PlayerPost,
   SliderList,
 } from "../interface/Utils";
@@ -52,15 +50,15 @@ export const items: SliderList[] = [
   },
   {
     key: 6,
-    href: "stade",
+    href: "stades",
     icon: faBuildingColumns,
-    label: "STADE",
+    label: "STADES",
   },
   {
     key: 7,
-    href: "arbitre",
+    href: "arbitres",
     icon: faHeadSideCough,
-    label: "ARBITRE",
+    label: "ARBITRES",
   },
   {
     key: 8,
@@ -101,6 +99,25 @@ export const poste: PlayerPost[] = [
   },
 ];
 
+export const arbitreRole: ArbitreRole[] = [
+  {
+    id: 1,
+    label: "Arbitre central",
+  },
+  {
+    id: 2,
+    label: "Arbitre assistant",
+  },
+  {
+    id: 3,
+    label: "Le 4eme arbitre",
+  },
+  {
+    id: 4,
+    label: "Arbitre assistant Var",
+  },
+];
+
 export const lateralite: PlayerFoot[] = [
   {
     id: "droit",
@@ -127,274 +144,6 @@ export const playerSexe: PlayerGender[] = [
   },
 ];
 
-export const clubNom: ClubName[] = [
-  {
-    id: 1815,
-    label: "Morocco",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Morocco31.png",
-  },
-  {
-    id: 1816,
-    label: "Renaissance Berkane",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Renaissance Berkane962.png",
-  },
-  {
-    id: 1817,
-    label: "Chabab RIF Hoceima",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Chabab RIF Hoceima963.png",
-  },
-  {
-    id: 1818,
-    label: "Difaa EL Jadida",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Difaa EL Jadida964.png",
-  },
-  {
-    id: 1819,
-    label: "Moghreb Tetouan",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Moghreb Tetouan965.png",
-  },
-  {
-    id: 1820,
-    label: "Racing de Casablanca",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Racing de Casablanca966.png",
-  },
-  {
-    id: 1821,
-    label: "Rapide Oued ZEM",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299471595.png",
-  },
-  {
-    id: 1822,
-    label: "Wydad AC",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Wydad AC968.png",
-  },
-  {
-    id: 1823,
-    label: "FAR Rabat",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/FAR Rabat969.png",
-  },
-  {
-    id: 1824,
-    label: "Chabab Atl. Khenifra",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Chabab Atl. Khenifra970.png",
-  },
-  {
-    id: 1825,
-    label: "Kawkab Marrakech",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Kawkab Marrakech971.png",
-  },
-  {
-    id: 1826,
-    label: "Olympique Khouribga",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Olympique Khouribga972.png",
-  },
-  {
-    id: 1827,
-    label: "Hassania Agadir",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Hassania Agadir973.png",
-  },
-  {
-    id: 1828,
-    label: "Ittihad Tanger",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Ittihad Tanger974.png",
-  },
-  {
-    id: 1829,
-    label: "Olympique Safi",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Olympique Safi975.png",
-  },
-  {
-    id: 1830,
-    label: "Raja Casablanca",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Raja Casablanca976.png",
-  },
-  {
-    id: 1831,
-    label: "FUS Rabat",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/FUS Rabat977.png",
-  },
-  {
-    id: 1832,
-    label: "Kasba Tadla",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Kasba Tadla978.png",
-  },
-  {
-    id: 1833,
-    label: "KAC Kenitra",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/KAC Kenitra979.png",
-  },
-  {
-    id: 1834,
-    label: "Youssoufia Berrechid",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Youssoufia Berrechid1074.png",
-  },
-  {
-    id: 1835,
-    label: "Mouloudia Oujda",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Mouloudia Oujda1075.png",
-  },
-  {
-    id: 1836,
-    label: "AS Salé",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293549050.png",
-  },
-  {
-    id: 1837,
-    label: "CR Khemis Zemamra",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/CR Khemis Zemamra3449.png",
-  },
-  {
-    id: 1838,
-    label: "Chabab Ben Guerir",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Chabab Ben Guerir3450.png",
-  },
-  {
-    id: 1839,
-    label: "El Massira",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/El Massira3451.png",
-  },
-  {
-    id: 1840,
-    label: "Ittihad Khemisset",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Ittihad Khemisset3452.png",
-  },
-  {
-    id: 1841,
-    label: "Maghreb Fès",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293568715.png",
-  },
-  {
-    id: 1842,
-    label: "Olympique Dcheïra",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293589689.png",
-  },
-  {
-    id: 1843,
-    label: "Raja Beni Mellal",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Raja Beni Mellal3455.png",
-  },
-  {
-    id: 1844,
-    label: "Riadi Salmi",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Riadi Salmi3456.png",
-  },
-  {
-    id: 1845,
-    label: "Sidi Kacem",
-    logo: "http://apidata.myteam.ma/uploads/afrique/morocco/Sidi Kacem3457.png",
-  },
-  {
-    id: 1846,
-    label: "Widad Témara",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293614149.png",
-  },
-  {
-    id: 1847,
-    label: "Wydad Fès",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293636603.png",
-  },
-  {
-    id: 1848,
-    label: "Chabab Mohammédia",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293684938.png",
-  },
-  {
-    id: 1849,
-    label: "Tihad Casablanca",
-    logo: "http://apidata.myteam.ma/uploads/image-1657293656948.png",
-  },
-  {
-    id: 1850,
-    label: "Morocco U23",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299377730.png",
-  },
-  {
-    id: 1851,
-    label: "Morocco U20",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299394791.png",
-  },
-  {
-    id: 1852,
-    label: "Morocco Women",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299354574.png",
-  },
-  {
-    id: 1853,
-    label: "UTS Rabat",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298080954.png",
-  },
-  {
-    id: 1854,
-    label: "Stade Marocain",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298109059.png",
-  },
-  {
-    id: 1855,
-    label: "Difâa Hamrya Khénifra",
-    logo: "http://apidata.myteam.ma/uploads/image-1657297712395.png",
-  },
-  {
-    id: 1856,
-    label: "Ittifaq Marrakech",
-    logo: "http://apidata.myteam.ma/uploads/image-1657297992064.png",
-  },
-  {
-    id: 1857,
-    label: "Mouloudia Dakhla",
-    logo: "http://apidata.myteam.ma/uploads/image-1657297448950.png",
-  },
-  {
-    id: 1858,
-    label: "Olympique Youssoufia",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298166597.png",
-  },
-  {
-    id: 1859,
-    label: "Rachad Bernoussi",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298237602.png",
-  },
-  {
-    id: 1860,
-    label: "Wydad Serghini",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298259536.png",
-  },
-  {
-    id: 1861,
-    label: "USM Oujda",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298328974.png",
-  },
-  {
-    id: 1862,
-    label: "AS Mansouria",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298365908.png",
-  },
-  {
-    id: 1863,
-    label: "Amal Tiznit",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298574159.jpeg",
-  },
-  {
-    id: 1864,
-    label: "Fath Casablanca",
-    logo: "http://apidata.myteam.ma/uploads/image-1657298483024.png",
-  },
-  {
-    id: 16436,
-    label: "Chabab M'rirt",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299620641.png",
-  },
-  {
-    id: 16437,
-    label: "Fath Nador",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299669002.png",
-  },
-  {
-    id: 16438,
-    label: "Union Temara",
-    logo: "http://apidata.myteam.ma/uploads/image-1657299724660.png",
-  },
-];
-
 export const clubSexe: ClubGender[] = [
   {
     id: "m",
@@ -403,45 +152,6 @@ export const clubSexe: ClubGender[] = [
   {
     id: "f",
     label: "Féminin",
-  },
-];
-
-export const clubCompitition: ClubCompitition[] = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-  {
-    id: 6,
-  },
-  {
-    id: 7,
-  },
-  {
-    id: 8,
-  },
-  {
-    id: 9,
-  },
-  {
-    id: 10,
-  },
-  {
-    id: 11,
-  },
-  {
-    id: 12,
   },
 ];
 

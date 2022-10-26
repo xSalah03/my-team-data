@@ -5,6 +5,11 @@ export interface SliderList {
   label: string;
 }
 
+export interface ArbitreRole {
+  id: number;
+  label: string;
+}
+
 export interface PlayerPost {
   id: string;
   label: string;
@@ -30,22 +35,23 @@ export interface ClubGender {
   label: string;
 }
 
-export interface ClubCompitition {
-  id: number;
-}
-
 export interface ClubType {
   id: number;
   label: string;
 }
 
-export interface ClubName {
+export interface ClubCompetition {
   id: number;
-  label: string;
-  logo: string;
+  label: string
 }
 
 export interface CountryName {
+  id: number;
+  nom: string;
+  logo: string;
+}
+
+export interface ClubName {
   id: number;
   nom: string;
   logo: string;

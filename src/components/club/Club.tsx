@@ -10,39 +10,36 @@ import {
   Button,
   Modal,
   Col,
-  Form,
   Row,
   Table,
   Space,
   notification,
 } from "antd";
 import React, { useEffect, useState } from "react";
-import { PlayerStateInterface } from "../../interface/redux-state/PlayerStateInterface";
 import { useAppDispatch, useAppSelector } from "../../redux-store/hooks";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import {
-  getAllPlayerSuccessAction,
-  deletePlayerAction,
-} from "../../redux-store/reducer/PlayerSlice";
 import type { NotificationPlacement } from "antd/es/notification";
 import Selects from "../../costum/Selects";
-import { clubNom, countryNom } from "../../utils/ConstData";
+import { countryNom } from "../../utils/ConstData";
 import { ClubName, CountryName } from "../../interface/Utils";
-import moment from "moment";
-import AddPlayer from "../player/models/AddPlayer";
-import UpdatePlayer from "../player/models/UpdatePlayer";
 import AddClub from "./models/AddClub";
+import { ClubStateInterface } from "../../interface/redux-state/ClubStateInterface";
+import {
+  deleteClubAction,
+  getAllClubSuccessAction,
+  status,
+} from "../../redux-store/reducer/ClubSlice";
+import UpdateClub from "./models/UpdateClub";
+import { getAllCompetitionSuccessAction } from "../../redux-store/reducer/CompetitionSlice";
 
 interface Item {
   key: string;
   photo: any;
   name: string;
-  birth: Date;
-  nat: string;
-  team: string;
-  post: string;
-  foot: string;
-  num: number;
+  slug: string;
+  type: string;
+  pays: string;
+  sexe: string;
   operation: any;
 }
 
@@ -55,21 +52,18 @@ const Club = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
+
   const UpdateData = (e: any) => {
     let newData = Object.create({});
     Object.keys(e).forEach((key: any) => {
-      newData[key] = ["nationalite"].includes(key)
-        ? e[key].split(",")
-        : ["date_naissance"].includes(key)
-        ? moment(e[key])
-        : e[key];
+      newData[key] = ["competitions"].includes(key) ? Number(e[key]) : e[key];
     });
     setUpdateData(newData);
     setModal3Open(true);
+    dispash(status(false));
   };
   const openNotification = React.useCallback(
     (placement: NotificationPlacement) => {
-      console.log(2);
       api.info({
         message: "Notification",
         description: (
@@ -96,11 +90,11 @@ const Club = () => {
   const showConfirm = (id: number) => {
     setTimeout(() => {
       confirm({
-        title: <h4>Supprimer le joueur</h4>,
+        title: <h4>Supprimer le club</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
         onOk() {
-          dispash(deletePlayerAction(id));
+          dispash(deleteClubAction(id));
         },
         onCancel() {
           console.log("Cancel");
@@ -118,32 +112,21 @@ const Club = () => {
   const [modal2Open, setModal2Open] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
 
-  const playerSlices: PlayerStateInterface = useAppSelector(
-    (state) => state.allPlayers
+  const clubSlices: ClubStateInterface = useAppSelector(
+    (state) => state.allClubs
   );
 
-  const [form] = Form.useForm();
-  const [editingKey, setEditingKey] = useState("");
-
   useEffect(() => {
-    dispash(getAllPlayerSuccessAction([]));
+    dispash(getAllClubSuccessAction([]));
+    dispash(getAllCompetitionSuccessAction([]));
   }, []);
 
-  // const showConfirm = (id: number) => {
-  //   setTimeout(() => {
-  //     confirm({
-  //       title: <h4>Supprimer le joueur</h4>,
-  //       icon: <ExclamationCircleOutlined />,
-  //       content: <p>Voullez vous supprimer ce ligne?</p>,
-  //       onOk() {
-  //         dispash(deletePlayerAction(id));
-  //       },
-  //       onCancel() {
-  //         console.log("Cancel");
-  //       },
-  //     });
-  //   });
-  // };
+  useEffect(() => {
+    if (clubSlices.isValid) {
+      setModal3Open(false);
+      setModal2Open(false);
+    }
+  }, [clubSlices.isValid]);
 
   const columns = [
     {
@@ -155,43 +138,31 @@ const Club = () => {
     {
       title: "Nom complet",
       dataIndex: "name",
-      width: "15%",
-      editable: true,
-    },
-    {
-      title: "Date naissance",
-      dataIndex: "birth",
       width: "20%",
       editable: true,
     },
     {
-      title: "Nationalite",
-      dataIndex: "nat",
-      width: "15%",
+      title: "Slug",
+      dataIndex: "slug",
+      width: "20%",
       editable: true,
     },
     {
-      title: "Equipe",
-      dataIndex: "team",
+      title: "Type",
+      dataIndex: "type",
+      width: "20%",
+      editable: true,
+    },
+    {
+      title: "Pays",
+      dataIndex: "pays",
       width: "10%",
       editable: true,
     },
     {
-      title: "Poste",
-      dataIndex: "post",
-      width: "5%",
-      editable: true,
-    },
-    {
-      title: "Pied",
-      dataIndex: "foot",
-      width: "5%",
-      editable: true,
-    },
-    {
-      title: "N°",
-      dataIndex: "num",
-      width: "5%",
+      title: "Genre",
+      dataIndex: "sexe",
+      width: "10%",
       editable: true,
     },
     {
@@ -247,7 +218,10 @@ const Club = () => {
             </h4>
           </Button>
           <Button
-            onClick={() => setModal2Open(true)}
+            onClick={() => {
+              setModal2Open(true);
+              dispash(status(false));
+            }}
             type="primary"
             style={{
               borderColor: "#b3d1ff",
@@ -325,7 +299,7 @@ const Club = () => {
               style={{
                 width: "200px",
               }}
-              options={clubNom.map((e: ClubName) => ({
+              options={clubSlices.clubs.map((e: ClubName) => ({
                 value: e.id,
                 label: (
                   <div
@@ -334,7 +308,7 @@ const Club = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>{e.label}</p>
+                    <p>{e.nom}</p>
                     <img
                       style={{
                         marginTop: "5px",
@@ -353,30 +327,22 @@ const Club = () => {
         <Table
           pagination={{ pageSize: 5 }}
           components={{
-            body: {
-              // cell: EditableCell,
-            },
+            body: {},
           }}
-          dataSource={playerSlices.players.map((e, i) => {
+          dataSource={clubSlices.clubs.map((e, i) => {
             return {
               key: e.id.toString(),
               photo: (
                 <Avatar
                   size="large"
-                  icon={<img src={e.image} alt={"photo"} />}
+                  icon={<img src={e.logo} alt={"photo"} />}
                 />
               ),
-              name: (
-                <h4>
-                  {e.nom} {e.prenom}
-                </h4>
-              ),
-              birth: e.date_naissance,
-              nat: e.nationalite,
-              team: e.id_equipe,
-              post: e.poste,
-              foot: e.lateralite,
-              num: e.numero_dossard,
+              name: <h4>{e.nom}</h4>,
+              slug: e.slug,
+              type: e.type,
+              pays: e.country,
+              sexe: e.sexe,
               operation: (
                 <span
                   style={{
@@ -409,6 +375,18 @@ const Club = () => {
         />
       </div>
       <>
+        {modal3Open && (
+          <UpdateClub
+            UpdateData={updateData}
+            title="Modifier le club"
+            centered={true}
+            visible={modal3Open}
+            loading={loading}
+            openNotification={openNotification}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          />
+        )}
         {modal2Open && (
           <AddClub
             title="Ajouter le club"
@@ -435,4 +413,3 @@ const Club = () => {
 };
 
 export default Club;
-

@@ -19,7 +19,6 @@ export const CountrySlice = createSlice({
     },
     getAllCountrySuccessAction: (state: any, action: PayloadAction<any>) => {
       state.countries = dataCountries.value;
-
       state.isLoading = false;
       state.isSuccessful = true;
     },

@@ -26,10 +26,13 @@ import {
 import AddPlayer from "./models/AddPlayer";
 import type { NotificationPlacement } from "antd/es/notification";
 import Selects from "../../costum/Selects";
-import { clubNom, countryNom } from "../../utils/ConstData";
+import { countryNom } from "../../utils/ConstData";
 import { ClubName, CountryName } from "../../interface/Utils";
 import UpdatePlayer from "./models/UpdatePlayer";
 import moment from "moment";
+import { status } from "../../redux-store/reducer/CompetitionSlice";
+import { ClubStateInterface } from "../../interface/redux-state/ClubStateInterface";
+import { getAllClubSuccessAction } from "../../redux-store/reducer/ClubSlice";
 
 interface Item {
   key: string;
@@ -49,10 +52,15 @@ const { confirm } = Modal;
 const Context = React.createContext({ name: "Default" });
 
 const Player = () => {
+  const clubSlice: ClubStateInterface = useAppSelector((state) => {
+    return state.allClubs;
+  });
   const [updateData, setUpdateData] = useState({});
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
+  const [modal2Open, setModal2Open] = useState(false);
+  const [modal3Open, setModal3Open] = useState(false);
 
   const UpdateData = (e: any) => {
     let newData = Object.create({});
@@ -65,6 +73,7 @@ const Player = () => {
     });
     setUpdateData(newData);
     setModal3Open(true);
+    dispash(status(false));
   };
   const openNotification = React.useCallback(
     (placement: NotificationPlacement) => {
@@ -97,16 +106,15 @@ const Player = () => {
     setModal3Open(false);
   };
 
-  const dispash = useAppDispatch();
-  const [modal2Open, setModal2Open] = useState(false);
-  const [modal3Open, setModal3Open] = useState(false);
-
   const playerSlices: PlayerStateInterface = useAppSelector(
     (state) => state.allPlayers
   );
 
+  const dispash = useAppDispatch();
+
   useEffect(() => {
     dispash(getAllPlayerSuccessAction([]));
+    dispash(getAllClubSuccessAction([]));
   }, []);
 
   const showConfirm = (id: number) => {
@@ -124,6 +132,13 @@ const Player = () => {
       });
     });
   };
+
+  useEffect(() => {
+    if (playerSlices.isValid) {
+      setModal3Open(false);
+      setModal2Open(false);
+    }
+  }, [playerSlices.isValid]);
 
   const columns = [
     {
@@ -189,8 +204,6 @@ const Player = () => {
     };
   });
 
-  console.log(playerSlices.players);
-
   return (
     <>
       <div
@@ -229,7 +242,10 @@ const Player = () => {
             </h4>
           </Button>
           <Button
-            onClick={() => setModal2Open(true)}
+            onClick={() => {
+              setModal2Open(true);
+              dispash(status(false));
+            }}
             type="primary"
             style={{
               borderColor: "#b3d1ff",
@@ -307,7 +323,7 @@ const Player = () => {
               style={{
                 width: "200px",
               }}
-              options={clubNom.map((e: ClubName) => ({
+              options={clubSlice.clubs.map((e: ClubName) => ({
                 value: e.id,
                 label: (
                   <div
@@ -316,7 +332,7 @@ const Player = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>{e.label}</p>
+                    <p>{e.nom}</p>
                     <img
                       style={{
                         marginTop: "5px",
@@ -396,9 +412,7 @@ const Player = () => {
             centered={true}
             visible={modal3Open}
             loading={loading}
-            // onOk={() => setModal2Open(false)}
             openNotification={openNotification}
-            // onCancel={() => setModal2Open(false)}
             onOk={handleOk}
             onCancel={handleCancel}
           />
@@ -410,16 +424,11 @@ const Player = () => {
             centered={true}
             visible={modal2Open}
             loading={loading}
-            // onOk={() => setModal2Open(false)}
             openNotification={openNotification}
-            // onCancel={() => setModal2Open(false)}
             onOk={handleOk}
             onCancel={handleCancel}
           />
         )}
-        {/* {
-            title,centered,visible,onOk,onCancel
-          }  */}
       </>
       <Context.Provider value={{ name: "Ant Design" }}>
         {contextHolder}

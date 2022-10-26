@@ -2,6 +2,7 @@ export interface ClubStateInterface {
   clubs: Club[];
   isLoading: boolean;
   isSuccessful: boolean;
+  isValid: boolean;
   error?: any;
 }
 
@@ -14,5 +15,5 @@ export interface Club {
   country: string;
   sexe: string;
   type: string;
-  competitions: any;
+  competitions: string | number;
 }

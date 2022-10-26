@@ -1,0 +1,23 @@
+{
+  "success": 1,
+  "value": [
+    {
+      "id": 5,
+      "nom": "Stade Mohamed 5",
+      "adresse": "Casablaca ",
+      "maps": ""
+    },
+    {
+      "id": 6,
+      "nom": "Complexe Moulay Abdellah",
+      "adresse": "Rabat Hay Ennahda",
+      "maps": ""
+    },
+    {
+      "id": 7,
+      "nom": "Complexe sportif du Phosphate",
+      "adresse": "Khouribga",
+      "maps": ""
+    }
+  ]
+}
