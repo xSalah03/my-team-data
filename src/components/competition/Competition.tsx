@@ -9,7 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux-store/hooks";
 import {
   faFileImport,
-  faPenToSquare,
+  faPen,
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
@@ -145,7 +145,7 @@ const Competition = () => {
       width: "15%",
     },
     {
-      title: "operation",
+      title: "Operation",
       dataIndex: "operation",
     },
   ];
@@ -254,7 +254,7 @@ const Competition = () => {
                       cursor: "pointer",
                       color: "#00b33c",
                     }}
-                    icon={faPenToSquare}
+                    icon={faPen}
                     onClick={() => UpdateData(e)}
                   />
                   <FontAwesomeIcon

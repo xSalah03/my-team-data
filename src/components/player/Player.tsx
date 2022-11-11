@@ -1,7 +1,7 @@
 import {
   faFileImport,
   faPlus,
-  faPenToSquare,
+  faPen,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -190,7 +190,7 @@ const Player = () => {
       editable: true,
     },
     {
-      title: "operation",
+      title: "Operation",
       dataIndex: "operation",
     },
   ];
@@ -385,7 +385,7 @@ const Player = () => {
                       cursor: "pointer",
                       color: "#00b33c",
                     }}
-                    icon={faPenToSquare}
+                    icon={faPen}
                     onClick={() => UpdateData(e)}
                   />
                   <FontAwesomeIcon

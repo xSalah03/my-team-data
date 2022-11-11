@@ -1,7 +1,7 @@
 import {
   faFileImport,
   faPlus,
-  faPenToSquare,
+  faPen,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -166,7 +166,7 @@ const Club = () => {
       editable: true,
     },
     {
-      title: "operation",
+      title: "Operation",
       dataIndex: "operation",
     },
   ];
@@ -332,12 +332,7 @@ const Club = () => {
           dataSource={clubSlices.clubs.map((e, i) => {
             return {
               key: e.id.toString(),
-              photo: (
-                <Avatar
-                  size="large"
-                  icon={<img src={e.logo} alt={"photo"} />}
-                />
-              ),
+              photo: <img style={{width: "50px"}} src={e.logo} alt={"photo"} />,
               name: <h4>{e.nom}</h4>,
               slug: e.slug,
               type: e.type,
@@ -355,7 +350,7 @@ const Club = () => {
                       cursor: "pointer",
                       color: "#00b33c",
                     }}
-                    icon={faPenToSquare}
+                    icon={faPen}
                     onClick={() => UpdateData(e)}
                   />
                   <FontAwesomeIcon

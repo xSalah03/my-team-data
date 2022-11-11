@@ -50,7 +50,7 @@ const UpdateArbitre = (props: Props) => {
   return (
     <>
       <Modal
-        footer={[]}
+        footer={false}
         title={props.title}
         centered
         open={props.visible}

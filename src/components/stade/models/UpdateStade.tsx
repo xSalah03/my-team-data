@@ -45,7 +45,7 @@ const UpdateStade = (props: Props) => {
   return (
     <>
       <Modal
-        footer={[]}
+        footer={false}
         title={props.title}
         centered
         open={props.visible}
@@ -95,45 +95,43 @@ const UpdateStade = (props: Props) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row-reverse",
-              justifyContent: "start",
-              alignItems: "end",
+              justifyContent: "end",
+              alignItems: "center",
             }}
           >
-            <div
+            <Buttons
               style={{
-                display: "flex",
+                borderRadius: "4px",
+                padding: "5px 10px",
+                fontSize: "14px",
+                margin: "0 12px",
+                textTransform: "capitalize",
               }}
-            >
-              <Buttons
-                style={{
-                  margin: "15px",
-                }}
-                htmlType="button"
-                type="default"
-                size="large"
-                loading={false}
-                shape="round"
-                label="Cancel"
-                icon={<ArrowLeftOutlined />}
-                onClick={props.onCancel}
-                key="back"
-              />
-              <Buttons
-                style={{
-                  margin: "15px",
-                }}
-                htmlType="submit"
-                type="primary"
-                size="large"
-                loading={props.loading}
-                shape="round"
-                label="Submit"
-                icon={<DownloadOutlined />}
-                onClick={props.onOk}
-                key="submit"
-              />
-            </div>
+              htmlType="button"
+              type="default"
+              size="large"
+              loading={false}
+              label="Cancel"
+              icon={<ArrowLeftOutlined />}
+              onClick={props.onCancel}
+              key="back"
+            />
+            <Buttons
+              style={{
+                borderRadius: "4px",
+                padding: "5px 10px",
+                fontSize: "14px",
+                margin: "0 12px",
+                textTransform: "capitalize",
+              }}              htmlType="submit"
+              type="primary"
+              size="large"
+              loading={props.loading}
+              label="Submit"
+              icon={<DownloadOutlined />}
+              onClick={props.onOk}
+              key="submit"
+            />
           </div>
         </Form>
       </Modal>

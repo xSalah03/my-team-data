@@ -79,23 +79,58 @@ export const poste: PlayerPost[] = [
   },
   {
     id: "D",
-    label: "Arriére droit",
+    label: "Défenseur",
+  },
+  {
+    id: "AD",
+    label: "Arrière droit"
+  },
+  {
+    id: "DC",
+    label: "Défenseur central",
+  },
+  {
+    id: "AG",
+    label: "Arrière gauche"
   },
   {
     id: "M",
-    label: "Arriére gauche",
+    label: "Milieu",
   },
   {
     id: "MG",
-    label: "Milieu central",
+    label: "Milieu gauche",
   },
   {
-    id: "MO",
+    id: "MA",
+    label: "Milieu axial",
+  },
+  {
+    id: "MD",
     label: "Milieu droit",
   },
   {
+    id: "MO",
+    label: "Milieu offensif",
+  },
+  {
+    id: "MDF",
+    label: "Milieu deffensif",
+  },
+  {
     id: "A",
-    label: "Milieu gauche",
+    label: "Attaquant",
+  }, {
+    id: "ALD",
+    label: "Ailier droit",
+  },
+  {
+    id: "AA",
+    label: "Ailier axial",
+  },
+  {
+    id: "ALG",
+    label: "Ailier gauche",
   },
 ];
 

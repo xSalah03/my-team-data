@@ -1,7 +1,7 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {
   faFileImport,
-  faPenToSquare,
+  faPen,
   faPlus,
   faTrash,
   faCircleDot,
@@ -109,7 +109,7 @@ const Saison = (props: Props) => {
   const showConfirm = (id: number) => {
     setTimeout(() => {
       confirm({
-        title: <h4>Supprimer la competition</h4>,
+        title: <h4>Supprimer la saison</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
         onOk() {
@@ -137,7 +137,7 @@ const Saison = (props: Props) => {
       width: "25%",
     },
     {
-      title: "operation",
+      title: "Operation",
       dataIndex: "operation",
     },
   ];
@@ -289,7 +289,7 @@ const Saison = (props: Props) => {
                       cursor: "pointer",
                       color: "#00b33c",
                     }}
-                    icon={faPenToSquare}
+                    icon={faPen}
                     onClick={() => UpdateData(e)}
                   />
                   <FontAwesomeIcon

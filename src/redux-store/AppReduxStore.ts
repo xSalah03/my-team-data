@@ -3,6 +3,7 @@ import ArbitreSlice from "./reducer/ArbitreSlice";
 import ClubSlice from "./reducer/ClubSlice";
 import CompetitionSlice from "./reducer/CompetitionSlice";
 import CountrySlice from "./reducer/CountrySlice";
+import MatchSlice from "./reducer/MatchSlice";
 import allPlayerSlice from "./reducer/PlayerSlice";
 import SaisonSlice from "./reducer/SaisionSlice";
 import StadeSlice from "./reducer/StadeSlice";
@@ -14,6 +15,7 @@ const AppReduxStore = configureStore({
     allCountries: CountrySlice,
     allCompetitions: CompetitionSlice,
     allArbitres: ArbitreSlice,
+    allMatchs: MatchSlice,
     allStades: StadeSlice,
     allSaison: SaisonSlice,
   },

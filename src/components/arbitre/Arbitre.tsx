@@ -12,7 +12,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFileImport,
-  faPenToSquare,
+  faPen,
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
@@ -142,7 +142,7 @@ const Arbitre = () => {
       width: "20%",
     },
     {
-      title: "operation",
+      title: "Operation",
       dataIndex: "operation",
     },
   ];
@@ -257,7 +257,7 @@ const Arbitre = () => {
                       cursor: "pointer",
                       color: "#00b33c",
                     }}
-                    icon={faPenToSquare}
+                    icon={faPen}
                     onClick={() => UpdateData(e)}
                   />
                   <FontAwesomeIcon
