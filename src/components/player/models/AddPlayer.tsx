@@ -47,8 +47,6 @@ const AddPlayer = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const dispash = useAppDispatch();
 
-  console.log(clubSlice);
-
   const onFinish = (values: Player) => {
     dispash(
       addPlayerAction({
@@ -62,7 +60,7 @@ const AddPlayer = (props: Props) => {
         poids: Number(values.poids),
         date_naissance: "" + moment(values.date_naissance).format("MM-DD-YYYY"),
       })
-    );
+    );    
   };
   const [form] = Form.useForm();
   useEffect(() => {

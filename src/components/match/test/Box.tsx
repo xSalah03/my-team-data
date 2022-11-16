@@ -3,13 +3,13 @@ import { memo } from 'react'
 import { useDrag } from 'react-dnd'
 
 const style: CSSProperties = {
-  border: '1px dashed gray',
+  border: '1px solid gray',
   backgroundColor: 'white',
-  padding: '0.5rem 1rem',
+  padding: '5px',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
+  width: 'auto',
   cursor: 'move',
-  float: 'left',
 }
 
 export interface BoxProps {

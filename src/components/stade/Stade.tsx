@@ -104,10 +104,12 @@ const Stade = (props: Props) => {
         title: <h4>Supprimer le stade</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
+        okText: 'Oui',
+        okType: 'danger',
         onOk() {
           dispash(deleteStadeAction(id));
         },
-        onCancel() {},
+        onCancel() { },
       });
     });
   };

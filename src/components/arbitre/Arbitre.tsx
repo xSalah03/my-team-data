@@ -107,10 +107,12 @@ const Arbitre = () => {
         title: <h4>Supprimer la competition</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
+        okText: 'Oui',
+        okType: 'danger',
         onOk() {
           dispash(deleteArbitreAction(id));
         },
-        onCancel() {},
+        onCancel() { },
       });
     });
   };

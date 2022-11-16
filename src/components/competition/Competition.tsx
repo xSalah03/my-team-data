@@ -53,8 +53,8 @@ const Competition = () => {
       newData[key] = ["pays_org"].includes(key)
         ? e[key].split(",")
         : ["date_debut", "date_fin"].includes(key)
-        ? moment(e[key])
-        : e[key];
+          ? moment(e[key])
+          : e[key];
     });
     setUpdateData(newData);
     setModal3Open(true);
@@ -110,10 +110,12 @@ const Competition = () => {
         title: <h4>Supprimer la competition</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
+        okText: 'Oui',
+        okType: 'danger',
         onOk() {
           dispash(deleteCompetitionAction(id));
         },
-        onCancel() {},
+        onCancel() { },
       });
     });
   };

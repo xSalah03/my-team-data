@@ -1,15 +1,16 @@
 import update from "immutability-helper";
-import { FC, useEffect } from "react";
-import { memo, useCallback, useState } from "react";
+import { useEffect } from "react";
+import { useCallback, useState } from "react";
 import "./css/composition.css"
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Box } from "./Box";
 import { getNumberOfPlayerOnTerrain } from "./composition";
 import { Dustbin } from "./Dustbin";
-import { getPlayer, ItemTypes } from "./ItemTypes";
+import { getPlayer } from "./ItemTypes";
 import { MatchStateInterface } from "../../../interface/redux-state/MatchStateInterface";
 import { useAppDispatch, useAppSelector } from "../../../redux-store/hooks";
-import { PlayerStateInterface } from "../../../interface/redux-state/PlayerStateInterface";
-import { getAllPlayerSuccessAction } from "../../../redux-store/reducer/MatchSlice";
+import { getAllMatchSuccessAction } from "../../../redux-store/reducer/MatchSlice";
 
 interface DustbinState {
   accepts: string[];
@@ -46,16 +47,15 @@ export const Container = () => {
 
   useEffect(() => {
     setBoxes(matchSlices.matchs.map((e: any, i) => {
-      return { name: `Player ${i}`, type: `${0}` };
+      return { name: e.nom + " " + e.prenom, type: e.poste };
+
     }))
 
   }, []);
-  
-  useEffect(() => {    
-    dispash(getAllPlayerSuccessAction([]));
-  }, []);
 
-  console.log()
+  useEffect(() => {
+    dispash(getAllMatchSuccessAction([]));
+  }, []);
 
   const [select, setSelect] = useState(11);
   const [selectFormation, setSelectFormation] = useState("");
@@ -140,46 +140,76 @@ export const Container = () => {
   );
 
   return (
-    <div>
-      <form action="">
-        <select name="formation" onChange={(e: any) => setSelect(e.target.value)}>
-          {getNumberOfPlayerOnTerrain.map((e: getPlayer) => (
-            <option value={e.nbr}>{e.nbr}</option>
-          ))}
-        </select>
-        <select name="formation" onChange={(e: any) => setSelectFormation(e.target.value)} >
-          {getNumberOfPlayerOnTerrain.find(e => e.nbr == select)?.system_play.map((e: any) => (
-            <option value={e.id}>{e.label}</option>
-          ))}
-        </select>
-      </form>
-      <br />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", flexDirection: "column", overflow: "hidden", clear: "both" }}>
-          {boxes.map(({ name, type }, index) => (
-            <Box
-              name={name}
-              type={type}
-              isDropped={isDropped(name)}
-              key={index}
-            />
-          ))}
+    <DndProvider backend={HTML5Backend}>
+      <div
+        style={{
+          padding: "20px",
+          borderRadius: "0 0 10px 10px",
+          backgroundColor: "white",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center"
+          }}>
+          <span style={{
+            height: "150px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center"
+          }}>
+            <img width="100px" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" alt="" />
+            <h4>club name</h4>
+          </span>
+          <form
+            action=""
+            style={{
+              width: "200px", display: "flex", justifyContent: "space-between", height: "30px"
+            }}>
+            <select name="formation" onChange={(e: any) => setSelect(e.target.value)}>
+              {getNumberOfPlayerOnTerrain.map((e: getPlayer) => (
+                <option value={e.nbr}>{e.nbr}</option>
+              ))}
+            </select>
+            <select name="formation" onChange={(e: any) => setSelectFormation(e.target.value)} >
+              {getNumberOfPlayerOnTerrain.find(e => e.nbr == select)?.system_play.map((e: any) => (
+                <option value={e.id}>{e.label}</option>
+              ))}
+            </select>
+          </form>
         </div>
-        <div style={{
-          position: "relative"
-        }}>
-          <img src="http://www.i2clipart.com/cliparts/9/0/4/9/clipart-campo-da-calcio-senza-scritte-512x512-9049.png" />
-          {dustbins.map(({ accepts, lastDroppedItem }, index) => (
-            <Dustbin
-              accept={accepts}
-              lastDroppedItem={lastDroppedItem}
-              onDrop={(item) => handleDrop(index, item)}
-              key={index}
-              class_={style[index]}
-            />
-          ))}
+        <br />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", flexDirection: "column", overflow: "scroll", clear: "both", height: "700px" }}>
+            {boxes.map(({ name, type }, index) => (
+              <Box
+                name={name}
+                type={type}
+                isDropped={isDropped(name)}
+                key={index}
+              />
+            ))}
+          </div>
+          <div style={{
+            position: "relative"
+          }}>
+            <img src="http://www.i2clipart.com/cliparts/9/0/4/9/clipart-campo-da-calcio-senza-scritte-512x512-9049.png" />
+            {dustbins.map(({ accepts, lastDroppedItem }, index) => (
+              <Dustbin
+                accept={accepts}
+                lastDroppedItem={lastDroppedItem}
+                onDrop={(item) => handleDrop(index, item)}
+                key={index}
+                class_={style[index]}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </div >
+      </div >
+    </DndProvider >
+
   );
 };

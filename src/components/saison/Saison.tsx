@@ -112,10 +112,12 @@ const Saison = (props: Props) => {
         title: <h4>Supprimer la saison</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
+        okText: 'Oui',
+        okType: 'danger',
         onOk() {
           dispash(deleteSaisonAction(id));
         },
-        onCancel() {},
+        onCancel() { },
       });
     });
   };

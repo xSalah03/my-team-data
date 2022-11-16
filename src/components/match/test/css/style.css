@@ -1,0 +1,10 @@
+.ant-tabs-nav-wrap {
+}
+
+div span .ant-tabs-tab {
+  width: 613px;
+}
+
+.ant-tabs-nav-more {
+  display: none !important;
+}

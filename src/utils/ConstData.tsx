@@ -32,7 +32,7 @@ export const items: SliderList[] = [
   },
   {
     key: 3,
-    href: "matchs",
+    href: "matchs/list",
     icon: faTrophy,
     label: "MATCHS",
   },

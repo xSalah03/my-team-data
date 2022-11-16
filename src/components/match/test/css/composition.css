@@ -6,6 +6,10 @@
   background-image: url("https://www.pngitem.com/pimgs/m/391-3918778_run-player-icon-png-transparent-png.png");
 }
 
+.ant-tabs-nav {
+  margin: 0;
+}
+
 .player_0 {
   left: 50%;
   top: 88%;

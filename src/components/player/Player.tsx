@@ -52,9 +52,6 @@ const { confirm } = Modal;
 const Context = React.createContext({ name: "Default" });
 
 const Player = () => {
-  const clubSlice: ClubStateInterface = useAppSelector((state) => {
-    return state.allClubs;
-  });
   const [updateData, setUpdateData] = useState({});
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -62,14 +59,18 @@ const Player = () => {
   const [modal2Open, setModal2Open] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
 
+  const clubSlice: ClubStateInterface = useAppSelector((state) => {
+    return state.allClubs;
+  });
+
   const UpdateData = (e: any) => {
     let newData = Object.create({});
     Object.keys(e).forEach((key: any) => {
       newData[key] = ["nationalite"].includes(key)
         ? e[key].split(",")
         : ["date_naissance"].includes(key)
-        ? moment(e[key])
-        : e[key];
+          ? moment(e[key])
+          : e[key];
     });
     setUpdateData(newData);
     setModal3Open(true);
@@ -123,6 +124,8 @@ const Player = () => {
         title: <h4>Supprimer le joueur</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
+        okText: 'Oui',
+        okType: 'danger',
         onOk() {
           dispash(deletePlayerAction(id));
         },

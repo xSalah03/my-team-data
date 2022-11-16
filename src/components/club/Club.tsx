@@ -93,6 +93,8 @@ const Club = () => {
         title: <h4>Supprimer le club</h4>,
         icon: <ExclamationCircleOutlined />,
         content: <p>Voullez vous supprimer ce ligne?</p>,
+        okText: 'Oui',
+        okType: 'danger',
         onOk() {
           dispash(deleteClubAction(id));
         },
@@ -332,7 +334,7 @@ const Club = () => {
           dataSource={clubSlices.clubs.map((e, i) => {
             return {
               key: e.id.toString(),
-              photo: <img style={{width: "50px"}} src={e.logo} alt={"photo"} />,
+              photo: <img style={{ width: "50px" }} src={e.logo} alt={"photo"} />,
               name: <h4>{e.nom}</h4>,
               slug: e.slug,
               type: e.type,
