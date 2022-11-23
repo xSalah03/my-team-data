@@ -1,6 +1,5 @@
 import { current, PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import dataPlayers from "../../assets/json/players.json";
 import { Match, MatchStateInterface } from "../../interface/redux-state/MatchStateInterface";
 
 const initialState: MatchStateInterface = {
@@ -19,7 +18,7 @@ export const MatchSlice = createSlice({
             state.isLoading = true;
         },
         getAllMatchSuccessAction: (state: any, action: PayloadAction<any>) => {
-            state.matchs = dataPlayers.value;
+            state.matchs = [];
 
             state.isLoading = false;
             state.isSuccessful = true;

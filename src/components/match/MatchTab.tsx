@@ -20,7 +20,7 @@ const MatchTab: React.FC = () => {
         },
         {
             id: 4,
-            name: "STATIQUES",
+            name: "STATISTIQUES",
         },
         {
             id: 5,

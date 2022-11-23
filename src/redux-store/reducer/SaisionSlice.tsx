@@ -51,9 +51,12 @@ export const SaisonSlice = createSlice({
       console.log(id, action.payload);
       state.isSuccessful = true;
     },
+    // disableDupplication: (state: any, action: PayloadAction<Saison>) => {
+      
+    // },
     updateSwitch: (state: any, action: PayloadAction<number>) => {
-      state.saisons = state.saisons.map((e:Saison)=>{
-        return {...e,active:e.id == action.payload ? e.active = 1 : e.active = 0 } ;
+      state.saisons = state.saisons.map((e: Saison) => {
+        return { ...e, active: e.id == action.payload ? e.active = 1 : e.active = 0 };
       });
     }
   },

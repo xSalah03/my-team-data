@@ -8,17 +8,23 @@ const style: CSSProperties = {
   padding: '5px',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
-  width: 'auto',
-  cursor: 'move',
+  width: '100%',
+  textAlign: "center",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
 }
 
 export interface BoxProps {
   name: string
   type: string
-  isDropped: boolean
+  img: string
+  isDropped?: boolean
+  cursor: boolean
+  onclick?: any
 }
 
-export const Box: FC<BoxProps> = memo(function Box({ name, type, isDropped }) {
+export const Box: FC<BoxProps> = memo(function Box({ onclick,name, type, img, isDropped, cursor }) {
   const [{ opacity }, drag] = useDrag(
     () => ({
       type,
@@ -31,8 +37,20 @@ export const Box: FC<BoxProps> = memo(function Box({ name, type, isDropped }) {
   )
 
   return (
-    <div ref={drag} style={{ ...style, opacity }} data-testid="box">
-      {isDropped ? <s>{name}</s> : name}
-    </div>
+    <div onClick={() => onclick()} ref={drag} style={{ ...{ ...style, opacity }, ...{ cursor: cursor ? "move" : "pointer" } }} data-testid="box">
+      <div>
+        <div style={{
+          width: "50px",
+          objectFit: "scale-down",
+          borderRadius: "50%",
+          overflow: "hidden"
+        }}>
+          <img src={img} alt="" width={"100%"} />
+        </div>
+      </div>
+      <div>
+        {isDropped ? <s>{name}</s> : name}
+      </div>
+    </div >
   )
 })

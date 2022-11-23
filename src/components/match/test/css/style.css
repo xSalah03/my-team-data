@@ -1,10 +1,14 @@
-.ant-tabs-nav-wrap {
-}
-
 div span .ant-tabs-tab {
-  width: 613px;
+  width: 511px;
 }
 
 .ant-tabs-nav-more {
   display: none !important;
+}
+
+.player-img{
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  right: -5px;
 }

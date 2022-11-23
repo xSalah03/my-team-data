@@ -8,16 +8,17 @@ import { Box } from "./Box";
 import { getNumberOfPlayerOnTerrain } from "./composition";
 import { Dustbin } from "./Dustbin";
 import { getPlayer } from "./ItemTypes";
-import { MatchStateInterface } from "../../../interface/redux-state/MatchStateInterface";
 import { useAppDispatch, useAppSelector } from "../../../redux-store/hooks";
-import { getAllMatchSuccessAction } from "../../../redux-store/reducer/MatchSlice";
-
+import { PlayerStateInterface } from "../../../interface/redux-state/PlayerStateInterface";
+import { getAllPlayerSuccessAction } from "../../../redux-store/reducer/PlayerSlice";
+import logo from "../../../assets/steps/terrain.png"
 interface DustbinState {
   accepts: string[];
   lastDroppedItem: any;
 }
 
 interface BoxState {
+  img: string;
   name: string;
   type: string;
 }
@@ -29,6 +30,7 @@ export interface DustbinSpec {
 export interface BoxSpec {
   name: string;
   type: string;
+  img: string;
 }
 export interface ContainerState {
   droppedBoxNames: string[];
@@ -37,24 +39,17 @@ export interface ContainerState {
 }
 
 export const Container = () => {
-  const matchSlices: MatchStateInterface = useAppSelector(
-    (state) => state.allMatchs
+  const playerSlices: PlayerStateInterface = useAppSelector(
+    (state) => state.allPlayers
   )
-
 
   const dispash = useAppDispatch();
 
-
   useEffect(() => {
-    setBoxes(matchSlices.matchs.map((e: any, i) => {
-      return { name: e.nom + " " + e.prenom, type: e.poste };
-
+    dispash(getAllPlayerSuccessAction([]));
+    setBoxes(playerSlices.players.map((e: any, i) => {
+      return { name: e.nom + " " + e.prenom, type: `${i}`, img: e.image };
     }))
-
-  }, []);
-
-  useEffect(() => {
-    dispash(getAllMatchSuccessAction([]));
   }, []);
 
   const [select, setSelect] = useState(11);
@@ -95,7 +90,7 @@ export const Container = () => {
 
   useEffect(() => {
     getCurrentPosition(select)
-  }, [selectFormation])
+  }, [select, selectFormation])
 
 
   const getCurrentPosition = (_select: number = 11) => {
@@ -140,6 +135,7 @@ export const Container = () => {
   );
 
   return (
+
     <DndProvider backend={HTML5Backend}>
       <div
         style={{
@@ -148,67 +144,67 @@ export const Container = () => {
           backgroundColor: "white",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center"
-          }}>
-          <span style={{
-            height: "150px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center"
-          }}>
-            <img width="100px" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" alt="" />
-            <h4>club name</h4>
-          </span>
-          <form
-            action=""
-            style={{
-              width: "200px", display: "flex", justifyContent: "space-between", height: "30px"
-            }}>
-            <select name="formation" onChange={(e: any) => setSelect(e.target.value)}>
-              {getNumberOfPlayerOnTerrain.map((e: getPlayer) => (
-                <option value={e.nbr}>{e.nbr}</option>
-              ))}
-            </select>
-            <select name="formation" onChange={(e: any) => setSelectFormation(e.target.value)} >
-              {getNumberOfPlayerOnTerrain.find(e => e.nbr == select)?.system_play.map((e: any) => (
-                <option value={e.id}>{e.label}</option>
-              ))}
-            </select>
-          </form>
-        </div>
-        <br />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", flexDirection: "column", overflow: "scroll", clear: "both", height: "700px" }}>
-            {boxes.map(({ name, type }, index) => (
+          <div style={{ display: "flex", flexDirection: "column", overflow: "scroll", overflowX: "hidden", clear: "both", marginTop: "10px", height: "500px" }}>
+            {boxes.map((e, index) => (
               <Box
-                name={name}
-                type={type}
-                isDropped={isDropped(name)}
+                cursor={true}
+                name={e.name}
+                type={e.type}
+                img={e.img}
+                isDropped={isDropped(e.name)}
                 key={index}
               />
             ))}
           </div>
           <div style={{
-            position: "relative"
-          }}>
-            <img src="http://www.i2clipart.com/cliparts/9/0/4/9/clipart-campo-da-calcio-senza-scritte-512x512-9049.png" />
-            {dustbins.map(({ accepts, lastDroppedItem }, index) => (
-              <Dustbin
-                accept={accepts}
-                lastDroppedItem={lastDroppedItem}
-                onDrop={(item) => handleDrop(index, item)}
-                key={index}
-                class_={style[index]}
-              />
-            ))}
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }} >
+            <form
+              action=""
+              style={{
+                width: "200px", display: "flex", justifyContent: "space-between", height: "30px"
+              }}>
+              <select
+                style={{
+                  width: "70px"
+                }}
+                name="formation"
+                onChange={(e: any) => setSelect(e.target.value)}>
+                {getNumberOfPlayerOnTerrain.map((e: getPlayer) => (
+                  <option value={e.nbr}>{e.nbr}</option>
+                ))}
+              </select>
+              <select style={{
+                width: "70px"
+              }}
+                name="formation"
+                onChange={(e: any) => setSelectFormation(e.target.value)} >
+                {getNumberOfPlayerOnTerrain.find(e => e.nbr == select)?.system_play.map((e: any) => (
+                  <option value={e.id}>{e.label}</option>
+                ))}
+              </select>
+            </form>
+            <div style={{
+              position: "relative",
+              width: "500px"
+            }}>
+              <img width="500px" src={logo} />
+              {dustbins.map(({ accepts, lastDroppedItem }, index) => (
+                <Dustbin
+                  accept={accepts}
+                  lastDroppedItem={lastDroppedItem}
+                  onDrop={(item) => handleDrop(index, item)}
+                  key={index}
+                  class_={style[index]}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div >
+      </div>
     </DndProvider >
 
   );

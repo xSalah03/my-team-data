@@ -43,7 +43,6 @@ const UpdatePlayer = (props: Props) => {
   const clubSlice: ClubStateInterface = useAppSelector((state) => {
     return state.allClubs;
   });
-  console.log(props.UpdateData);
 
   const dispash = useAppDispatch();
 
@@ -336,7 +335,7 @@ const UpdatePlayer = (props: Props) => {
                 fontSize: "14px",
                 margin: "0 12px",
                 textTransform: "capitalize",
-              }}              htmlType="button"
+              }} htmlType="button"
               type="default"
               size="large"
               loading={false}
@@ -352,7 +351,7 @@ const UpdatePlayer = (props: Props) => {
                 fontSize: "14px",
                 margin: "0 12px",
                 textTransform: "capitalize",
-              }}              htmlType="submit"
+              }} htmlType="submit"
               type="primary"
               size="large"
               loading={props.loading}
