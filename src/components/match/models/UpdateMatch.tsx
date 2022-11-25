@@ -43,7 +43,6 @@ const UpdateMatch = (props: Props) => {
   };
 
   const onFinish = (values: Match) => {
-    console.log(values)
     dispash(
       addMatchAction({
         ...values,

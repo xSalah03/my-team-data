@@ -1,4 +1,3 @@
-import { CFormSelect } from "@coreui/react";
 import { Modal } from "antd";
 import { CSSProperties, FC, useEffect, useState } from "react";
 import { memo } from "react";
@@ -36,6 +35,7 @@ export const Dustbin: FC<DustbinProps> = memo(function Dustbin({
   onDrop,
   class_
 }) {
+  const [team, setTeam] = useState([]);
   const [{ isOver, canDrop }, drop] = useDrop({
     accept,
     drop: onDrop,
@@ -44,6 +44,17 @@ export const Dustbin: FC<DustbinProps> = memo(function Dustbin({
       canDrop: monitor.canDrop()
     })
   });
+
+  // const movePlayer = (item:any) => {
+  //   console.log(item);
+  //   if (item && item.type === "player") {
+  //     //Accepting player into the team
+  //     setTeam((_team) => [..._team, players[item.index]]);
+  //   } else {
+  //     //Removing a player from team
+  //     setTeam((_team) => _team.filter((_, idx) => idx !== item.index));
+  //   }
+  // };
 
   const dispash = useAppDispatch();
 
@@ -93,7 +104,7 @@ export const Dustbin: FC<DustbinProps> = memo(function Dustbin({
           }}>
             {boxes.map((e, index) => (
               <Box
-                onclick={() => (handler(e), setOpen(false))}
+                onclick={() => handler(e)}
                 cursor={false}
                 name={e.name}
                 type={e.type}

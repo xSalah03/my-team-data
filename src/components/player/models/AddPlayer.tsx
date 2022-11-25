@@ -35,17 +35,16 @@ type Props = {
   loading?: any;
 };
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
-};
-
 const AddPlayer = (props: Props) => {
+  const [loading, setLoading] = useState(false);
+  const dispash = useAppDispatch();
   const clubSlice: ClubStateInterface = useAppSelector((state) => {
     return state.allClubs;
   });
 
-  const [loading, setLoading] = useState(false);
-  const dispash = useAppDispatch();
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
 
   const onFinish = (values: Player) => {
     dispash(
@@ -60,9 +59,11 @@ const AddPlayer = (props: Props) => {
         poids: Number(values.poids),
         date_naissance: "" + moment(values.date_naissance).format("MM-DD-YYYY"),
       })
-    );    
+    );
   };
+
   const [form] = Form.useForm();
+  
   useEffect(() => {
     return () => {
       props.openNotification({ name: "test" });
@@ -340,7 +341,7 @@ const AddPlayer = (props: Props) => {
                 fontSize: "14px",
                 margin: "0 12px",
                 textTransform: "capitalize",
-              }}              htmlType="button"
+              }} htmlType="button"
               type="default"
               size="large"
               loading={false}
@@ -356,7 +357,7 @@ const AddPlayer = (props: Props) => {
                 fontSize: "14px",
                 margin: "0 12px",
                 textTransform: "capitalize",
-              }}              htmlType="submit"
+              }} htmlType="submit"
               type="primary"
               size="large"
               loading={props.loading}

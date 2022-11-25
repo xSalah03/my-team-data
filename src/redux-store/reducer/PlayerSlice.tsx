@@ -41,7 +41,6 @@ export const PLayerSlice = createSlice({
     },
     addPlayerAction: (state: any, action: PayloadAction<{}>) => {
       state.players.push(action.payload);
-      console.log(state.players);
       state.isSuccessful = true;
     },
     status: (state: any, action: PayloadAction<boolean>) => {

@@ -24,12 +24,10 @@ type Props = {}
 
 const Match = (props: Props) => {
 
-
   const dispash = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
-  const [composition, setComposition] = useState(false);
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const [updateData, setUpdateData] = useState({});
@@ -165,13 +163,13 @@ const Match = (props: Props) => {
               display: "flex",
               marginBottom: "15px"
             }}
-            onClick={() => navigate(`/matchs/one/${e.id}`, {
-              state: {
-                e
-              }
-            })}
           >
             <div
+              onClick={() => navigate(`/matchs/one/${e.id}`, {
+                state: {
+                  e
+                }
+              })}
               style={{
                 backgroundColor: "#e6e7eb",
                 borderRadius: "10px",

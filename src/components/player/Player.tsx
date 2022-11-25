@@ -34,19 +34,6 @@ import { status } from "../../redux-store/reducer/CompetitionSlice";
 import { ClubStateInterface } from "../../interface/redux-state/ClubStateInterface";
 import { getAllClubSuccessAction } from "../../redux-store/reducer/ClubSlice";
 
-interface Item {
-  key: string;
-  photo: any;
-  name: string;
-  birth: Date;
-  nat: string;
-  team: string;
-  post: string;
-  foot: string;
-  num: number;
-  operation: any;
-}
-
 const { confirm } = Modal;
 
 const Context = React.createContext({ name: "Default" });
@@ -58,6 +45,7 @@ const Player = () => {
   const [api, contextHolder] = notification.useNotification();
   const [modal2Open, setModal2Open] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
+  const dispash = useAppDispatch();
 
   const clubSlice: ClubStateInterface = useAppSelector((state) => {
     return state.allClubs;
@@ -76,6 +64,7 @@ const Player = () => {
     setModal3Open(true);
     dispash(status(false));
   };
+
   const openNotification = React.useCallback(
     (placement: NotificationPlacement) => {
       console.log(2);
@@ -110,8 +99,6 @@ const Player = () => {
   const playerSlices: PlayerStateInterface = useAppSelector(
     (state) => state.allPlayers
   );
-
-  const dispash = useAppDispatch();
 
   useEffect(() => {
     dispash(getAllPlayerSuccessAction([]));

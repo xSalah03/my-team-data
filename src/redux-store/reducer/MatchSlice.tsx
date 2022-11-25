@@ -37,7 +37,6 @@ export const MatchSlice = createSlice({
         },
         addMatchAction: (state: MatchStateInterface, action: PayloadAction<Match>) => {
             state.matchs.push(action.payload);
-            console.log(current(state));
             state.isSuccessful = true;
         },
         status: (state: any, action: PayloadAction<boolean>) => {

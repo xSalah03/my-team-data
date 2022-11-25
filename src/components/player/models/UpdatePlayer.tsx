@@ -35,16 +35,17 @@ type Props = {
   UpdateData?: any;
 };
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
-};
-
 const UpdatePlayer = (props: Props) => {
+
   const clubSlice: ClubStateInterface = useAppSelector((state) => {
     return state.allClubs;
   });
 
   const dispash = useAppDispatch();
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };  
 
   const onFinish = (values: Player) => {
     dispash(
@@ -62,7 +63,9 @@ const UpdatePlayer = (props: Props) => {
       })
     );
   };
+
   const [form] = Form.useForm();
+  
   useEffect(() => {
     return () => {
       props.openNotification({ name: "test" });

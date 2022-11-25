@@ -28,11 +28,9 @@ type Props = {
     loading?: any;
 };
 
-
 const AddMatch = (props: Props) => {
     const [loading, setLoading] = useState(false);
     const dispash = useAppDispatch();
-
     const clubSlice: ClubStateInterface = useAppSelector((state) => {
         return state.allClubs;
     });
@@ -66,6 +64,7 @@ const AddMatch = (props: Props) => {
     };
 
     const [form] = Form.useForm();
+    
     useEffect(() => {
         return () => {
             props.openNotification({ name: "test" });
